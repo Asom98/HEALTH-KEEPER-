@@ -8,6 +8,10 @@ Fokus på träning & hälsa?
 
 Påminnelse om att dricka vatten
 
+Påminnelse att äta var tredje timme för optimalt välmående och jämt blodsocker
+
+Påminnelse om att ta med matlådor för att minimera att glömma äta
+
 BMI-koll
 
 Logg för framsteg, ex. Tid för att slutföra löprunda eller ökning av vikter på gymmet.
@@ -33,3 +37,5 @@ Sätta upp kortsiktliga plan i form av vecko planering?
 Motivations-citat för varje dag för att motivera.
 
 Vecko kalender med möjlighet att skriva in veckan planering och mål att uppnå, tex träna Mån, tis, ons... Minska rökning med endast 2 cigg/dag Mån, Tis, Ons...osv. 
+
+Veckoplanering av matlådor och måltider: frukost, lunch & middag samt mellanmål och tips för varje måltid.
