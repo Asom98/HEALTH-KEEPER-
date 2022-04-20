@@ -1,4 +1,4 @@
-# agilaMethods
+# agileMethods
 
 
 
