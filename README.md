@@ -24,3 +24,9 @@ Påminnelse om att ta med matlådor för att minimera att glömma äta
 EXTRA:
 
 Motivations-citat för varje dag för att motivera.
+
+##prototype
+##log in
+##roles
+##jira
+
