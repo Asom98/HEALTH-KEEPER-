@@ -1,0 +1,1 @@
+Java packages etc go in /src folder
