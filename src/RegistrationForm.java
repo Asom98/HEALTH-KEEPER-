@@ -2,6 +2,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 
 public class RegistrationForm extends JDialog{
     private JPanel registerPanel;
@@ -19,6 +23,7 @@ public class RegistrationForm extends JDialog{
         setMinimumSize(new Dimension(458, 476));
         setModal(true);
         setLocationRelativeTo(parent);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         /*
             Action event listeners for the buttons.
@@ -57,11 +62,64 @@ public class RegistrationForm extends JDialog{
                     "Try again", JOptionPane.ERROR_MESSAGE);
             return;
         }
+        
+        user = addUserToDatabase(name, email, password);
+        if (user != null) {
+            dispose();
+        }
+        else {
+            JOptionPane.showMessageDialog(this,
+                    "Failed to register new user",
+                    "Try again!",
+                    JOptionPane.ERROR_MESSAGE);
+        }
+    }
+
+    public User user;
+    private User addUserToDatabase(String name, String email, String password) {
+        User user = null;
+        final String DB_URL = "jdbc:mysql://localhost/agileMethods?serverTimezone=UTC";
+        final String USERNAME = "root";
+        final String PASSWORD = "root";
+
+        try{
+            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+
+            Statement stmt = conn.createStatement();
+            String sql = "INSERT INTO users (name, email, password)" +
+                    "VALUES (?, ?, ?)";
+            PreparedStatement prepStatement = conn.prepareStatement(sql);
+            prepStatement.setString(1, name);
+            prepStatement.setString(2, email);
+            prepStatement.setString(3, password);
+
+            int addedRows = prepStatement.executeUpdate();
+            if (addedRows > 0) {
+                user = new User();
+                user.name = name;
+                user.email = email;
+                user.password = password;
+            }
+
+            stmt.close();
+            conn.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
 
 
+        return user;
     }
 
     public static void main(String[] args) {
         RegistrationForm myForm = new RegistrationForm(null);
+        User user = myForm.user;
+        if (user != null) {
+            System.out.println("Successfully registered as user: " + user.name);
+        }
+        else{
+            System.out.println("Registration cancelled");
+        }
     }
 }
