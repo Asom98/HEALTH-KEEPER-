@@ -16,7 +16,7 @@ public class LoginForm extends JDialog{
         super(parent);
         setTitle("Login");
         setContentPane(loginPanel);
-        setMinimumSize(new Dimension(450, 474));
+        setMinimumSize(new Dimension(520, 476));
         setModal(true);
         setLocationRelativeTo(parent);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);

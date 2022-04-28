@@ -20,7 +20,7 @@ public class RegistrationForm extends JDialog{
         super(parent);
         setTitle("Create new account");
         setContentPane(registerPanel);
-        setMinimumSize(new Dimension(458, 476));
+        setMinimumSize(new Dimension(520, 476));
         setModal(true);
         setLocationRelativeTo(parent);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);

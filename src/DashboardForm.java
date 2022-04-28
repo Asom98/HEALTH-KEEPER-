@@ -73,6 +73,8 @@ public class DashboardForm extends JFrame{
         final String USERNAME = "root";
         final String PASSWORD = "root";
 
+
+
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
             Statement statement = conn.createStatement();
