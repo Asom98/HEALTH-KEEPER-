@@ -69,7 +69,7 @@ public class DashboardForm extends JFrame{
         boolean hasRegisteredUsers = false;
 
         final String MYSQL_SERVER_URL = "jdbc:mysql://localhost/";
-        final String DB_URL = "jdbc:mysql://localhost/agileMethods?serverTimezone=UTC";
+        final String DB_URL = "jdbc:mysql://localhost/loginam?serverTimezone=UTC";
         final String USERNAME = "root";
         final String PASSWORD = "root";
 
@@ -78,9 +78,9 @@ public class DashboardForm extends JFrame{
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
             Statement statement = conn.createStatement();
-            statement.executeUpdate("CREATE DATABASE IF NOT EXISTS agileMethods");
-            statement.close();
-            conn.close();
+            //statement.executeUpdate("CREATE DATABASE IF NOT EXISTS agileMethods");
+            //statement.close();
+            //conn.close();
 
             conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
             statement = conn.createStatement();

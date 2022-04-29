@@ -2,10 +2,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.Encoder;
+import java.nio.charset.StandardCharsets;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.Statement;
+import java.util.Base64;
 
 public class RegistrationForm extends JDialog{
     private JPanel registerPanel;
@@ -56,6 +59,9 @@ public class RegistrationForm extends JDialog{
          String email = tfEmail.getText();
          String password = String.valueOf(pfPassword.getPassword());
 
+         Base64.Encoder encoder = Base64.getEncoder();
+         String encodedString = encoder.encodeToString(password.getBytes(StandardCharsets.UTF_8));
+
         if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
             JOptionPane.showMessageDialog(this,
                     "Please fill in all the fields",
@@ -63,7 +69,7 @@ public class RegistrationForm extends JDialog{
             return;
         }
         
-        user = addUserToDatabase(name, email, password);
+        user = addUserToDatabase(name, email, encodedString);
         if (user != null) {
             dispose();
         }
@@ -78,7 +84,7 @@ public class RegistrationForm extends JDialog{
     public User user;
     private User addUserToDatabase(String name, String email, String password) {
         User user = null;
-        final String DB_URL = "jdbc:mysql://localhost/agileMethods?serverTimezone=UTC";
+        final String DB_URL = "jdbc:mysql://localhost/loginam?serverTimezone=UTC";
         final String USERNAME = "root";
         final String PASSWORD = "root";
 

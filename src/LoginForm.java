@@ -2,13 +2,15 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.nio.charset.StandardCharsets;
 import java.sql.*;
+import java.util.Base64;
 
 public class LoginForm extends JDialog{
     private JTextField tfEmail;
     private JPasswordField pfPassword;
     private JButton btnLogin;
-    private JButton btnCancel;
+    private JButton btnRegistration;
     private JPanel loginPanel;
 
 
@@ -44,10 +46,11 @@ public class LoginForm extends JDialog{
         });
 
 
-        btnCancel.addActionListener(new ActionListener() {
+        btnRegistration.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
+                RegistrationForm registrationForm = new RegistrationForm(new JFrame());
             }
         });
 
@@ -58,22 +61,24 @@ public class LoginForm extends JDialog{
     private User getAuthenticatedUser(String email, String password) {
         User user = null;
 
-        final String DB_URL = "jdbc:mysql://localhost/agileMethods?serverTimezone=UTC";
+        final String DB_URL = "jdbc:mysql://localhost/loginam?serverTimezone=UTC";
         final String USERNAME = "root";
         final String PASSWORD = "root";
 
-        try{
+        try {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
 
             Statement stmt = conn.createStatement();
             String sql = "SELECT * FROM users WHERE email=? AND password=?";
             PreparedStatement prepStatement = conn.prepareStatement(sql);
             prepStatement.setString(1, email);
-            prepStatement.setString(2, password);
+            Base64.Encoder encoder = Base64.getEncoder();
+            String encodedString = encoder.encodeToString(password.getBytes(StandardCharsets.UTF_8));
+            prepStatement.setString(2, encodedString);
 
             ResultSet resultSet = prepStatement.executeQuery();
 
-            if (resultSet.next()){
+            if (resultSet.next()) {
                 user = new User();
                 user.name = resultSet.getString("name");
                 user.email = resultSet.getString("email");
