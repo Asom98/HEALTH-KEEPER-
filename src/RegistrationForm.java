@@ -58,9 +58,8 @@ public class RegistrationForm extends JDialog{
          String name = tfName.getText();
          String email = tfEmail.getText();
          String password = String.valueOf(pfPassword.getPassword());
+         String encodedString = encode(password);
 
-         Base64.Encoder encoder = Base64.getEncoder();
-         String encodedString = encoder.encodeToString(password.getBytes(StandardCharsets.UTF_8));
 
         if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
             JOptionPane.showMessageDialog(this,
@@ -116,6 +115,13 @@ public class RegistrationForm extends JDialog{
 
 
         return user;
+    }
+
+    private String encode(String password){
+
+        Base64.Encoder encoder = Base64.getEncoder();
+        String encodedString = encoder.encodeToString(password.getBytes(StandardCharsets.UTF_8));
+        return  encodedString;
     }
 
     public static void main(String[] args) {

@@ -72,8 +72,7 @@ public class LoginForm extends JDialog{
             String sql = "SELECT * FROM users WHERE email=? AND password=?";
             PreparedStatement prepStatement = conn.prepareStatement(sql);
             prepStatement.setString(1, email);
-            Base64.Encoder encoder = Base64.getEncoder();
-            String encodedString = encoder.encodeToString(password.getBytes(StandardCharsets.UTF_8));
+            String encodedString = encode(password);
             prepStatement.setString(2, encodedString);
 
             ResultSet resultSet = prepStatement.executeQuery();
@@ -93,6 +92,13 @@ public class LoginForm extends JDialog{
         }
 
         return user;
+    }
+
+    private String encode(String password){
+
+        Base64.Encoder encoder = Base64.getEncoder();
+        String encodedString = encoder.encodeToString(password.getBytes(StandardCharsets.UTF_8));
+        return encodedString;
     }
 
 
