@@ -83,12 +83,12 @@ public class RegistrationForm extends JDialog{
     public User user;
     private User addUserToDatabase(String name, String email, String password) {
         User user = null;
-        final String DB_URL = "jdbc:mysql://localhost/loginam?serverTimezone=UTC";
-        final String USERNAME = "root";
-        final String PASSWORD = "root";
+        final String DB_URL = "jdbc:mysql:///amdb?cloudSqlInstance=magnetic-planet-348520:europe-north1:amdb&socketFactory=com.google.cloud.sql.mysql.SocketFactory&user=root&password=root";
+        //final String USERNAME = "root";
+        //final String PASSWORD = "root";
 
         try{
-            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+            Connection conn = DriverManager.getConnection(DB_URL);
 
             Statement stmt = conn.createStatement();
             String sql = "INSERT INTO users (name, email, password)" +
@@ -122,6 +122,10 @@ public class RegistrationForm extends JDialog{
         Base64.Encoder encoder = Base64.getEncoder();
         String encodedString = encoder.encodeToString(password.getBytes(StandardCharsets.UTF_8));
         return  encodedString;
+    }
+
+    private void cloudConn(){
+
     }
 
     public static void main(String[] args) {
