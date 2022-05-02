@@ -1,3 +1,5 @@
+import model.User;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -80,10 +82,12 @@ public class RegistrationForm extends JDialog{
         }
     }
 
-    public User user;
-    private User addUserToDatabase(String name, String email, String password) {
-        User user = null;
-        final String DB_URL = "jdbc:mysql:///amdb?cloudSqlInstance=magnetic-planet-348520:europe-north1:amdb&socketFactory=com.google.cloud.sql.mysql.SocketFactory&user=root&password=root";
+    public UserForm user;
+    private UserForm addUserToDatabase(String name, String email, String password) {
+        UserForm userForm = null;
+        User user = new User(name, email, password);
+
+        final String DB_URL = "jdbc:mysql:///amdb?cloudSqlInstance=magnetic-planet-348520:europe-north1:amdb&socketFactory=com.google.cloud.sql.mysql.SocketFactory&userForm=root&password=root";
         //final String USERNAME = "root";
         //final String PASSWORD = "root";
 
@@ -91,7 +95,7 @@ public class RegistrationForm extends JDialog{
             Connection conn = DriverManager.getConnection(DB_URL);
 
             Statement stmt = conn.createStatement();
-            String sql = "INSERT INTO users (name, email, password)" +
+            String sql = "INSERT INTO users (user.getName(), user.getEmail(), user.getPassword())" +
                     "VALUES (?, ?, ?)";
             PreparedStatement prepStatement = conn.prepareStatement(sql);
             prepStatement.setString(1, name);
@@ -99,11 +103,10 @@ public class RegistrationForm extends JDialog{
             prepStatement.setString(3, password);
 
             int addedRows = prepStatement.executeUpdate();
+
+            // If the write operation was successful
             if (addedRows > 0) {
-                user = new User();
-                user.name = name;
-                user.email = email;
-                user.password = password;
+                // Probably don't need to do anything
             }
 
             stmt.close();
@@ -114,7 +117,7 @@ public class RegistrationForm extends JDialog{
         }
 
 
-        return user;
+        return userForm;
     }
 
     private String encode(String password){
@@ -130,9 +133,9 @@ public class RegistrationForm extends JDialog{
 
     public static void main(String[] args) {
         RegistrationForm myForm = new RegistrationForm(null);
-        User user = myForm.user;
+        UserForm user = myForm.user;
         if (user != null) {
-            System.out.println("Successfully registered as user: " + user.name);
+            System.out.println("Successfully registered as user: " + user.getName());
         }
         else{
             System.out.println("Registration cancelled");

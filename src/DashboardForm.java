@@ -24,7 +24,7 @@ public class DashboardForm extends JFrame{
         if (hasRegisteredUsers){
             //show login form
             LoginForm loginForm = new LoginForm(this);
-            User user = loginForm.user;
+            UserForm user = loginForm.user;
 
             if (user != null) {
                 lbDashboard.setText("User: " + user.name);
@@ -38,7 +38,7 @@ public class DashboardForm extends JFrame{
         else {
             // display registration
             RegistrationForm registrationForm = new RegistrationForm(this);
-            User user = registrationForm.user;
+            UserForm user = registrationForm.user;
 
             if (user != null){
                 lbDashboard.setText("User: " + user.name);
@@ -53,11 +53,11 @@ public class DashboardForm extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 RegistrationForm registrationForm = new RegistrationForm(DashboardForm.this);
-                User user = registrationForm.user;
+                UserForm userForm = registrationForm.user;
 
-                if (user != null){
+                if (userForm != null){
                     JOptionPane.showMessageDialog(DashboardForm.this,
-                            "New user: " + user.name,
+                            "New user: " + userForm.name,
                             "Registration successful",
                             JOptionPane.INFORMATION_MESSAGE);
                 }

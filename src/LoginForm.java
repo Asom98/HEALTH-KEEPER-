@@ -57,9 +57,9 @@ public class LoginForm extends JDialog{
         setVisible(true);
     }
 
-    public User user;
-    private User getAuthenticatedUser(String email, String password) {
-        User user = null;
+    public UserForm user;
+    private UserForm getAuthenticatedUser(String email, String password) {
+        UserForm user = null;
 
         final String DB_URL = "jdbc:mysql://localhost/loginam?serverTimezone=UTC";
         final String USERNAME = "root";
@@ -78,7 +78,7 @@ public class LoginForm extends JDialog{
             ResultSet resultSet = prepStatement.executeQuery();
 
             if (resultSet.next()) {
-                user = new User();
+                user = new UserForm();
                 user.name = resultSet.getString("name");
                 user.email = resultSet.getString("email");
                 user.password = resultSet.getString("password");
@@ -104,7 +104,7 @@ public class LoginForm extends JDialog{
 
     public static void main(String[] args) {
         LoginForm loginForm = new LoginForm(null);
-        User user = loginForm.user;
+        UserForm user = loginForm.user;
         if (user != null) {
             System.out.printf("Login successful. \nWelcome " + user.name);
             System.out.printf("\nEmail: " + user.email);
