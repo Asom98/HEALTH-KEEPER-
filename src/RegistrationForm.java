@@ -20,6 +20,7 @@ public class RegistrationForm extends JDialog{
     private JPasswordField pfConfirmPassword;
     private JButton btnRegister;
     private JButton btnCancel;
+    public User user;
 
     public RegistrationForm(JFrame parent){
         super(parent);
@@ -82,8 +83,7 @@ public class RegistrationForm extends JDialog{
         }
     }
 
-    public UserForm user;
-    private UserForm addUserToDatabase(String name, String email, String password) {
+    private User addUserToDatabase(String name, String email, String password) {
         UserForm userForm = null;
         User user = new User(name, email, password);
 
@@ -117,7 +117,7 @@ public class RegistrationForm extends JDialog{
         }
 
 
-        return userForm;
+        return user;
     }
 
     private String encode(String password){
@@ -133,7 +133,7 @@ public class RegistrationForm extends JDialog{
 
     public static void main(String[] args) {
         RegistrationForm myForm = new RegistrationForm(null);
-        UserForm user = myForm.user;
+        User user = myForm.user;
         if (user != null) {
             System.out.println("Successfully registered as user: " + user.getName());
         }

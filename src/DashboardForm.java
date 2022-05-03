@@ -1,3 +1,5 @@
+import model.User;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -24,10 +26,10 @@ public class DashboardForm extends JFrame{
         if (hasRegisteredUsers){
             //show login form
             LoginForm loginForm = new LoginForm(this);
-            UserForm user = loginForm.user;
+            User user = loginForm.user;
 
             if (user != null) {
-                lbDashboard.setText("User: " + user.name);
+                lbDashboard.setText("User: " + user.getName());
                 setLocationRelativeTo(null);
                 setVisible(true);
             }
@@ -38,10 +40,10 @@ public class DashboardForm extends JFrame{
         else {
             // display registration
             RegistrationForm registrationForm = new RegistrationForm(this);
-            UserForm user = registrationForm.user;
+            User user = registrationForm.user;
 
             if (user != null){
-                lbDashboard.setText("User: " + user.name);
+                lbDashboard.setText("User: " + user.getName());
                 setLocationRelativeTo(null);
                 setVisible(true);
             }
@@ -53,11 +55,11 @@ public class DashboardForm extends JFrame{
             @Override
             public void actionPerformed(ActionEvent e) {
                 RegistrationForm registrationForm = new RegistrationForm(DashboardForm.this);
-                UserForm userForm = registrationForm.user;
+                User user = registrationForm.user;
 
-                if (userForm != null){
+                if (user != null){
                     JOptionPane.showMessageDialog(DashboardForm.this,
-                            "New user: " + userForm.name,
+                            "New user: " + user.getName(),
                             "Registration successful",
                             JOptionPane.INFORMATION_MESSAGE);
                 }
