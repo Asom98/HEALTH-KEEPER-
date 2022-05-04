@@ -1,73 +1,105 @@
-#!/usr/bin/env make
+# Below is a more complicated example Makefile for a java program (it is harder to read, but easier to use and modify in this form).
+# Note: it is important to have no space or tab characters after line continuations (\) in Makefiles.
 
-# Change this to be your variant of the python command
-PYTHON ?= python # python3 py
+JFLAGS = -g
+JC = javac
+.SUFFIXES: .java .class
+.java.class:$(JC) $(JFLAGS) $*.java
 
-# Print out colored action message
-MESSAGE = printf "\033[32;01m---> $(1)\033[0m\n"
+CLASSES = \
+DashboardForm.java \
+LoginForm.java \
+RegistrationForm.java \
+UserForm.java \
+Day.java \
+Food.java \
+User.java \
+Workout.java
+	
+default:classes
 
-# To make targets in each directory under the src/
-define FOREACH
-    for DIR in src/*; do \
-        $(MAKE) -C $$DIR $(1); \
-    done
-endef
+classes:$(CLASSES:.java=.class)
 
-all:
+clean:$(RM) *.class
+
+# To use the above makefile to compile your java programs:
+# create a file named 'makefile' in your homework directory with the identical contents
+# modify the CLASSES macro so that it has the names of your .java files;
+# run 'make', and if all goes well, it should compile all your java source files that need to be re-built.
+# Here is the same makefile, with comments explaining each line:
 
 
-# ---------------------------------------------------------
-# Setup a venv and install packages.
+
 #
-version:
-	@printf "Currently using executable: $(PYTHON)\n"
-	which $(PYTHON)
-	$(PYTHON) --version
-
-venv:
-	[ -d .venv ] || $(PYTHON) -m venv .venv
-	@printf "Now activate the Python virtual environment.\n"
-	@printf "On Unix and Mac, do:\n"
-	@printf ". .venv/bin/activate\n"
-	@printf "On Windows (bash terminal), do:\n"
-	@printf ". .venv/Scripts/activate\n"
-	@printf "Type 'deactivate' to deactivate.\n"
-
-install:
-	$(PYTHON) -m pip install -r requirements.txt
-
-installed:
-	$(PYTHON) -m pip list
-
-
-# ---------------------------------------------------------
-# Cleanup generated and installed files.
+# define compiler and compiler flag variables
 #
-clean:
-	rm -f .coverage *.pyc
-	rm -rf __pycache__
-	rm -rf htmlcov
 
-clean-doc:
-	rm -rf doc
-
-clean-src:
-	$(call FOREACH,clean)
-
-clean-all: clean clean-doc clean-src
-	rm -rf .venv
+JFLAGS = -g
+JC = javac
 
 
-# ---------------------------------------------------------
-# Test all the code at once.
 #
-pylint:
-	$(call FOREACH,pylint)
+# Clear any default targets for building .class files from .java files; we
+# will provide our own target entry to do this in this makefile.
+# make has a set of default targets for different suffixes (like .c.o)
+# Currently, clearing the default for .java.class is not necessary since
+# make does not have a definition for this target, but later versions of
+# make may, so it doesn't hurt to make sure that we clear any default
+# definitions for these
+#
 
-flake8:
-	$(call FOREACH,flake8)
+.SUFFIXES: .java .class
 
-lint: flake8 pylint
 
-test:
-	$(call FOREACH,test)
+#
+# Here is our target entry for creating .class files from .java files
+# This is a target entry that uses the suffix rule syntax:
+#	DSTS:
+#		rule
+#  'TS' is the suffix of the target file, 'DS' is the suffix of the dependency
+#  file, and 'rule'  is the rule for building a target
+# '$*' is a built-in macro that gets the basename of the current target
+# Remember that there must be a < tab > before the command line ('rule')
+#
+
+.java.class:$(JC) $(JFLAGS) $*.java
+
+
+#
+# CLASSES is a macro consisting of 4 words (one for each java source file)
+#
+
+CLASSES = \
+DashboardForm.java \
+LoginForm.java \
+RegistrationForm.java \
+UserForm.java \
+Day.java \
+Food.java \
+User.java \
+Workout.java
+
+
+#
+# the default make target entry
+#
+
+default:classes
+
+
+#
+# This target entry uses Suffix Replacement within a macro:
+# $(name:string1=string2)
+# 	In the words in the macro named 'name' replace 'string1' with 'string2'
+# Below we are replacing the suffix .java of all words in the macro CLASSES
+# with the .class suffix
+#
+
+classes:$(CLASSES:.java=.class)
+
+
+#
+# RM is a predefined macro in make (RM = rm -f)
+#
+
+clean:$(RM) *.class

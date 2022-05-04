@@ -34,8 +34,6 @@ class DayTest {
         Assertions.assertEquals(day.getWorkouts().get(1), "Gym");
 
     }
-
-
     @Test
     public void testFoodArrayInit(){
         Assertions.assertTrue(day.getFoods().isEmpty());
