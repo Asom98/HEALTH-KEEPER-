@@ -1,7 +1,10 @@
 package model;
 
 public class Food {
-
+    private int calories;
+    public Food(int calories) {
+        this.calories = calories;
+    }
     public int getCalories() {
         return calories;
     }
@@ -10,10 +13,6 @@ public class Food {
         this.calories = calories;
     }
 
-    private int calories;
 
-    public Food(int calories) {
-        this.calories = calories;
-    }
 
 }

@@ -6,4 +6,8 @@ public class Day {
 
     private ArrayList<Workout> workouts;
     private ArrayList<Food> foods;
+    public Day(){
+
+    }
+
 }

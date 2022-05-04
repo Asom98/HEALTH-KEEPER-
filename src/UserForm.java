@@ -1,17 +1,19 @@
+import model.Week;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ContainerAdapter;
+import java.awt.event.ContainerEvent;
 
 public class UserForm extends JDialog {
-    private JTextField tfWater;
-    private JLabel Food;
-    private JTextField tfFood;
-    private JTextField tfWorkout;
     private JButton btnAdd;
     private JButton btnCancel;
-    private JTextField tfLabel;
     private JPanel userPanel;
+    private JLabel Welcome;
+    private JToolBar WeekTolbar;
+
 
     public void UserForm(JFrame parent) {
 
@@ -37,7 +39,24 @@ public class UserForm extends JDialog {
             }
         });
 
+        Week week = new Week();
+        JComboBox comboBox = new JComboBox();
+
         setVisible(true);
+
+        WeekTolbar.addContainerListener(new ContainerAdapter() {
+            @Override
+            public void componentAdded(ContainerEvent e) {
+                super.componentAdded(e);
+            }
+        });
+
+
+    }
+
+    public static void main(String[] args) {
+
+        UserForm userForm = new UserForm();
 
     }
 
