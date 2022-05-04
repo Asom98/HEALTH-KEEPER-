@@ -1,13 +1,11 @@
 package model;
 
-import java.util.ArrayList;
-
 public class Day {
+    public enum days {Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday }
 
-    private ArrayList<Workout> workouts;
-    private ArrayList<Food> foods;
-    public Day(){
+    public Day(days day){
 
     }
+
 
 }
