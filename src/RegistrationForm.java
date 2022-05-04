@@ -13,6 +13,7 @@ import java.sql.Statement;
 import java.util.Base64;
 
 public class RegistrationForm extends JDialog{
+
     private JPanel registerPanel;
     private JTextField tfName;
     private JTextField tfEmail;

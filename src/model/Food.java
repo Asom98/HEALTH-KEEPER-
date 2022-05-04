@@ -1,7 +1,9 @@
 package model;
 
 public class Food {
+
     private int calories;
+
     public Food(int calories) {
         this.calories = calories;
     }
@@ -12,7 +14,6 @@ public class Food {
     public void setCalories(int calories) {
         this.calories = calories;
     }
-
 
 
 }
