@@ -13,7 +13,6 @@ import java.sql.Statement;
 import java.util.Base64;
 
 public class RegistrationForm extends JDialog{
-
     private JPanel registerPanel;
     private JTextField tfName;
     private JTextField tfEmail;
@@ -22,7 +21,6 @@ public class RegistrationForm extends JDialog{
     private JButton btnRegister;
     private JButton btnCancel;
     public User user;
-
 
     public RegistrationForm(JFrame parent){
         super(parent);
@@ -60,10 +58,10 @@ public class RegistrationForm extends JDialog{
 
 
     private void registerUser() {
-         String name = tfName.getText();
-         String email = tfEmail.getText();
-         String password = String.valueOf(pfPassword.getPassword());
-         String encodedString = encode(password);
+        String name = tfName.getText();
+        String email = tfEmail.getText();
+        String password = String.valueOf(pfPassword.getPassword());
+        String encodedString = encode(password);
 
 
         if (name.isEmpty() || email.isEmpty() || password.isEmpty()) {
@@ -72,7 +70,7 @@ public class RegistrationForm extends JDialog{
                     "Try again", JOptionPane.ERROR_MESSAGE);
             return;
         }
-        
+
         user = addUserToDatabase(name, email, encodedString);
         if (user != null) {
             dispose();
@@ -89,15 +87,15 @@ public class RegistrationForm extends JDialog{
         UserForm userForm = null;
         User user = new User(name, email, password);
 
-        final String DB_URL = "jdbc:mysql:///amdb?cloudSqlInstance=magnetic-planet-348520:europe-north1:amdb&socketFactory=com.google.cloud.sql.mysql.SocketFactory&userForm=root&password=root";
-        //final String USERNAME = "root";
-        //final String PASSWORD = "root";
+        final String DB_URL = "jdbc:mysql://localhost/loginam?serverTimezone=UTC";
+        final String USERNAME = "root";
+        final String PASSWORD = "root";
 
         try{
-            Connection conn = DriverManager.getConnection(DB_URL);
+            Connection conn = DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
 
             Statement stmt = conn.createStatement();
-            String sql = "INSERT INTO users (user.getName(), user.getEmail(), user.getPassword())" +
+            String sql = "INSERT INTO users (name, email, password)" +
                     "VALUES (?, ?, ?)";
             PreparedStatement prepStatement = conn.prepareStatement(sql);
             prepStatement.setString(1, name);
@@ -137,6 +135,7 @@ public class RegistrationForm extends JDialog{
         RegistrationForm myForm = new RegistrationForm(null);
         User user = myForm.user;
         if (user != null) {
+
             System.out.println("Successfully registered as user: " + user.getName());
         }
         else{

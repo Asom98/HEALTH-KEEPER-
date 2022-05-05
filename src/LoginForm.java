@@ -14,7 +14,7 @@ public class LoginForm extends JDialog{
     private JButton btnLogin;
     private JButton btnRegistration;
     private JPanel loginPanel;
-    public User user;
+
 
     public LoginForm(JFrame parent){
         super(parent);
@@ -33,9 +33,13 @@ public class LoginForm extends JDialog{
                 String email = tfEmail.getText();
                 String password = String.valueOf(pfPassword.getPassword());
 
-                User user = getAuthenticatedUser(email, password);
+                user = getAuthenticatedUser(email, password);
 
                 if (user != null){
+                    JOptionPane.showMessageDialog(LoginForm.this,
+                            "logged in successfully: " + user.name,
+                            "Welcome",
+                            JOptionPane.INFORMATION_MESSAGE);
                     dispose();
                 }
                 else {
@@ -53,12 +57,14 @@ public class LoginForm extends JDialog{
             public void actionPerformed(ActionEvent e) {
                 dispose();
                 RegistrationForm registrationForm = new RegistrationForm(new JFrame());
+
             }
         });
 
         setVisible(true);
     }
 
+    public User user;
     private User getAuthenticatedUser(String email, String password) {
         User user = null;
 
@@ -80,9 +86,9 @@ public class LoginForm extends JDialog{
 
             if (resultSet.next()) {
                 user = new User();
-                user.setName(resultSet.getString("name"));
-                user.setEmail(resultSet.getString("email"));
-                user.setPassword(resultSet.getString("password"));
+                user.name = resultSet.getString("name");
+                user.email = resultSet.getString("email");
+                user.password = resultSet.getString("password");
             }
 
             stmt.close();
@@ -107,7 +113,7 @@ public class LoginForm extends JDialog{
         LoginForm loginForm = new LoginForm(null);
         User user = loginForm.user;
         if (user != null) {
-            System.out.printf("Login successful. \nWelcome " + user.getName());
+            System.out.printf("Login successful. \nWelcome " + user.name);
             System.out.printf("\nEmail: " + user.getEmail());
         }
         else{

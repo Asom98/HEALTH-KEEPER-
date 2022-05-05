@@ -1,70 +1,70 @@
-import model.Day;
-import model.Food;
-import model.Workout;
+import model.User;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ContainerAdapter;
-import java.awt.event.ContainerEvent;
-import java.util.ArrayList;
-
-import static model.Day.days.*;
+import java.nio.charset.StandardCharsets;
+import java.time.LocalDateTime;
+import java.time.MonthDay;
 
 public class UserForm extends JDialog {
-    private JButton btnAdd;
-    private JButton btnCancel;
+
     private JPanel userPanel;
-    private JLabel Welcome;
+    private JLabel label;
+    private JButton closebtn;
     private JComboBox comboBox1;
+    private JLabel ChoiseLabel;
 
 
     public  UserForm(JFrame parent) {
         super(parent);
-        setTitle("Create new account");
+        setTitle("User Form");
         setContentPane(userPanel);
         setMinimumSize(new Dimension(520, 476));
         setModal(true);
         setLocationRelativeTo(parent);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        /*
+        String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
+        comboBox1 = new JComboBox(days);
+        this.add(comboBox1);*/
 
-        //  buttons
+        setVisible(true);
+        //label.setText();
 
-        btnAdd.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
 
-            }
-        });
-        btnCancel.addActionListener(new ActionListener() {
+        closebtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
             }
         });
 
-        Day day1 = new Day(Monday);
-        Day day2 = new Day(Tuesday);
-        Day day3 = new Day(Wednesday);
-        Day day4 = new Day(Thursday);
-        Day day5 = new Day(Friday);
-        Day day6 = new Day(Saturday);
-        Day day7 = new Day(Sunday);
-        String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
 
-        JComboBox comboBox = new JComboBox(days);
-        this.add(comboBox1);
-        this.pack();
-        this.setVisible(true);
-        setVisible(true);
+        comboBox1.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
+                System.out.println(comboBox1.getSelectedItem());
+
+            }
+        });
     }
 
     public static void main(String[] args) {
+        LocalDateTime myObj = LocalDateTime.now();
+        LoginForm loginForm = new LoginForm(null);
+        User user = loginForm.user;
+        if(user != null){
+            UserForm userForm = new UserForm(null);
 
-        UserForm userForm = new UserForm(null);
+
+        }else {
+            System.out.printf("try agin");
+        }
+
+
 
     }
 

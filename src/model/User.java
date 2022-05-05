@@ -3,9 +3,9 @@ package model;
 import java.util.ArrayList;
 
 public class User {
-    private String name;
-    private String email;
-    private String password;
+    public String name;
+    public String email;
+    public String password;
     private ArrayList<Day> days;
 
 
