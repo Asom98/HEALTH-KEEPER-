@@ -28,7 +28,6 @@ public class UserForm extends JDialog {
         setModal(true);
         setLocationRelativeTo(parent);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         //  buttons

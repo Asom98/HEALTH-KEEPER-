@@ -23,6 +23,7 @@ public class RegistrationForm extends JDialog{
     private JButton btnCancel;
     public User user;
 
+
     public RegistrationForm(JFrame parent){
         super(parent);
         setTitle("Create new account");
