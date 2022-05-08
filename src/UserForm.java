@@ -2,13 +2,6 @@ import model.User;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.nio.charset.StandardCharsets;
-import java.time.LocalDateTime;
-import java.time.MonthDay;
 
 public class UserForm extends JDialog {
 
@@ -17,16 +10,19 @@ public class UserForm extends JDialog {
     private JButton profileBtn;
     private JButton workOutBtn;
     private JButton healthBtn;
+    private JLabel profileIcon;
+    private JLabel workOutIcon;
+    private JLabel healthIcon;
 
 
     //LoginForm loginForm = new LoginForm(null);
-    //User user = loginForm.user;
-    public User user = new User("kassem", "kassem@", "123");
+    //model.User user = loginForm.user;
+    public User user = new User("User", "model.User@", "123");
 
 
     public  UserForm(JFrame parent) {
         super(parent);
-        setTitle("User Form");
+        setTitle("model.User Form");
         setContentPane(userPanel);
         setMinimumSize(new Dimension(520, 476));
         setModal(true);
@@ -48,7 +44,7 @@ public class UserForm extends JDialog {
 
     public static void main(String[] args) {
         //LocalDateTime myObj = LocalDateTime.now();
-        User user = new User("kassem", "kassem@", "123");
+        //model.User user = new model.User("kassem", "kassem@", "123");
 
         UserForm userForm = new UserForm(null);
         /*

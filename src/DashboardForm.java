@@ -29,7 +29,7 @@ public class DashboardForm extends JFrame{
             User user = loginForm.user;
 
             if (user != null) {
-                lbDashboard.setText("User: " + user.getName());
+                lbDashboard.setText("model.User: " + user.getName());
                 setLocationRelativeTo(null);
                 setVisible(true);
             }
@@ -43,7 +43,7 @@ public class DashboardForm extends JFrame{
             User user = registrationForm.user;
 
             if (user != null){
-                lbDashboard.setText("User: " + user.getName());
+                lbDashboard.setText("model.User: " + user.getName());
                 setLocationRelativeTo(null);
                 setVisible(true);
             }
