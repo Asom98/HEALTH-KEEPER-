@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.time.LocalDate;
 
 public class UserForm extends JDialog {
 
@@ -15,6 +16,8 @@ public class UserForm extends JDialog {
     private JLabel profileIcon;
     private JLabel workOutIcon;
     private JLabel healthIcon;
+    private JLabel dateLabel;
+    public LocalDate dateNow = LocalDate.now();
 
 
     //LoginForm loginForm = new LoginForm(null);
@@ -30,10 +33,18 @@ public class UserForm extends JDialog {
         setModal(true);
         setLocationRelativeTo(parent);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        healthBtn.setBackground(Color.orange);
 
-        workOutBtn.setBackground(Color.orange);
-        profileBtn.setBackground(Color.orange);
+        dateLabel.setText(dateNow.toString());
+
+        healthBtn.setBackground(new Color(255,215,0));
+        healthBtn.setBorderPainted(false);
+
+        workOutBtn.setBackground(new Color(255,215,0));
+        workOutBtn.setBorderPainted(false);
+
+        profileBtn.setBackground(new Color(255,215,0));
+        profileBtn.setBorderPainted(false);
+
         String name = user.getName();
         nameLabel.setText("Welcome " + name);
 
@@ -75,7 +86,7 @@ public class UserForm extends JDialog {
     }
 
     public static void main(String[] args) {
-        //LocalDateTime myObj = LocalDateTime.now();
+
         //model.User user = new model.User("kassem", "kassem@", "123");
 
         UserForm userForm = new UserForm(null);
