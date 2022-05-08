@@ -68,9 +68,9 @@ public class LoginForm extends JDialog{
     private User getAuthenticatedUser(String email, String password) {
         User user = null;
 
-        final String DB_URL = "jdbc:mysql://localhost/loginam?serverTimezone=UTC";
-        final String USERNAME = "root";
-        final String PASSWORD = "root";
+        final String DB_URL = "jdbc:mysql://eu-cdbr-west-02.cleardb.net/heroku_b7a2d484b13ad29";
+        final String USERNAME = "b9ff1b68e68067";
+        final String PASSWORD = "a4162bab";
 
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);

@@ -71,9 +71,9 @@ public class DashboardForm extends JFrame{
         boolean hasRegisteredUsers = false;
 
         final String MYSQL_SERVER_URL = "jdbc:mysql://localhost/";
-        final String DB_URL = "jdbc:mysql://localhost/loginam?serverTimezone=UTC";
-        final String USERNAME = "root";
-        final String PASSWORD = "root";
+        final String DB_URL = "jdbc:mysql://eu-cdbr-west-02.cleardb.net/heroku_b7a2d484b13ad29";
+        final String USERNAME = "b9ff1b68e6806";
+        final String PASSWORD = "a4162bab";
 
 
 
