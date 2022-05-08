@@ -17,22 +17,25 @@ public class UserForm extends JDialog {
     private JLabel workOutIcon;
     private JLabel healthIcon;
     private JLabel dateLabel;
+
+
     public LocalDate dateNow = LocalDate.now();
 
 
     //LoginForm loginForm = new LoginForm(null);
     //model.User user = loginForm.user;
-    public User user = new User("kassem", "model.User@", "123");
+    public User user = new User("kassem", "User@", "123");
 
 
     public  UserForm(JFrame parent) {
         super(parent);
-        setTitle("model.User Form");
+        setTitle("User form");
         setContentPane(userPanel);
         setMinimumSize(new Dimension(520, 476));
         setModal(true);
         setLocationRelativeTo(parent);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
 
         dateLabel.setText(dateNow.toString());
 
