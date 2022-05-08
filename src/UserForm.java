@@ -2,6 +2,8 @@ import model.User;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class UserForm extends JDialog {
 
@@ -17,7 +19,7 @@ public class UserForm extends JDialog {
 
     //LoginForm loginForm = new LoginForm(null);
     //model.User user = loginForm.user;
-    public User user = new User("User", "model.User@", "123");
+    public User user = new User("kassem", "model.User@", "123");
 
 
     public  UserForm(JFrame parent) {
@@ -28,17 +30,47 @@ public class UserForm extends JDialog {
         setModal(true);
         setLocationRelativeTo(parent);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        healthBtn.setBackground(Color.orange);
+
+        workOutBtn.setBackground(Color.orange);
+        profileBtn.setBackground(Color.orange);
         String name = user.getName();
         nameLabel.setText("Welcome " + name);
 
 
 
+        profileBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(UserForm.this,
+                        "welcome to your profile: " + user.getName(),
+                        "Profile",
+                        JOptionPane.INFORMATION_MESSAGE);
 
+            }
+        });
 
+        workOutBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(UserForm.this,
+                        "here we add a new work out",
+                        "Work out",
+                        JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
 
-
-
+        healthBtn.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                JOptionPane.showMessageDialog(UserForm.this,
+                        "health status...",
+                        "Health",
+                        JOptionPane.INFORMATION_MESSAGE);
+            }
+        });
         setVisible(true);
+
 
     }
 
