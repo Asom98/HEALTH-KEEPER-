@@ -37,7 +37,7 @@ public class LoginForm extends JDialog{
 
                 if (user != null){
                     JOptionPane.showMessageDialog(LoginForm.this,
-                            "logged in successfully: " + user.name,
+                            "logged in successfully: " + user.getName(),
                             "Welcome",
                             JOptionPane.INFORMATION_MESSAGE);
                     dispose();

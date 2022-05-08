@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalDateTime;
 import java.time.MonthDay;
@@ -11,10 +13,15 @@ import java.time.MonthDay;
 public class UserForm extends JDialog {
 
     private JPanel userPanel;
-    private JLabel label;
-    private JButton closebtn;
-    private JComboBox comboBox1;
-    private JLabel ChoiseLabel;
+    private JLabel nameLabel;
+    private JButton profileBtn;
+    private JButton workOutBtn;
+    private JButton healthBtn;
+
+
+    //LoginForm loginForm = new LoginForm(null);
+    //User user = loginForm.user;
+    public User user = new User("kassem", "kassem@", "123");
 
 
     public  UserForm(JFrame parent) {
@@ -25,44 +32,33 @@ public class UserForm extends JDialog {
         setModal(true);
         setLocationRelativeTo(parent);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        /*
-        String[] days = {"Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"};
-        comboBox1 = new JComboBox(days);
-        this.add(comboBox1);*/
+        String name = user.getName();
+        nameLabel.setText("Welcome " + name);
+
+
+
+
+
+
+
 
         setVisible(true);
-        //label.setText();
 
-
-        closebtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-            }
-        });
-
-
-        comboBox1.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-
-                System.out.println(comboBox1.getSelectedItem());
-
-            }
-        });
     }
 
     public static void main(String[] args) {
-        LocalDateTime myObj = LocalDateTime.now();
-        LoginForm loginForm = new LoginForm(null);
-        User user = loginForm.user;
+        //LocalDateTime myObj = LocalDateTime.now();
+        User user = new User("kassem", "kassem@", "123");
+
+        UserForm userForm = new UserForm(null);
+        /*
         if(user != null){
-            UserForm userForm = new UserForm(null);
+
 
 
         }else {
             System.out.printf("try agin");
-        }
+        }*/
 
 
 
