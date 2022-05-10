@@ -1,4 +1,4 @@
-import model.User;
+import modelS.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,7 +19,7 @@ public class RegistrationForm extends JDialog{
     private JPasswordField pfConfirmPassword;
     private JButton btnRegister;
     private JButton btnCancel;
-    public User user;
+    public modelS.User user;
 
     public RegistrationForm(JFrame parent){
         super(parent);
@@ -126,9 +126,6 @@ public class RegistrationForm extends JDialog{
         return  encodedString;
     }
 
-    private void cloudConn(){
-
-    }
 
     public static void main(String[] args) {
         RegistrationForm myForm = new RegistrationForm(null);

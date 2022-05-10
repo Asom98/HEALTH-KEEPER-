@@ -1,4 +1,4 @@
-import model.User;
+import modelS.User;
 
 import javax.swing.*;
 import java.awt.*;

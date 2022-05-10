@@ -1,6 +1,4 @@
-package model;
-
-import java.util.ArrayList;
+package modelS;
 
 public class User {
     public String name;

@@ -13,7 +13,7 @@ RegistrationForm.java \
 UserForm.java \
 Day.java \
 Food.java \
-model.User.java \
+modelS.User.java \
 Workout.java
 	
 default:classes
@@ -76,7 +76,7 @@ RegistrationForm.java \
 UserForm.java \
 Day.java \
 Food.java \
-model.User.java \
+modelS.User.java \
 Workout.java
 
 

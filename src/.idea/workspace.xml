@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="a573552c-2bc6-4e71-bbbc-54524b694656" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../Makefile" beforeDir="false" afterPath="$PROJECT_DIR$/../Makefile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DashboardForm.form" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/DashboardForm.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/LoginForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/LoginForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/RegistrationForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/RegistrationForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/UserForm.java" beforeDir="false" afterPath="$PROJECT_DIR$/UserForm.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/img/backGround.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Day.java" beforeDir="false" afterPath="$PROJECT_DIR$/modelS/Day.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/DayTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/modelS/DayTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Food.java" beforeDir="false" afterPath="$PROJECT_DIR$/modelS/Food.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/FoodTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/modelS/FoodTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/modelS/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/UserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/modelS/UserTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/Workout.java" beforeDir="false" afterPath="$PROJECT_DIR$/modelS/Workout.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="ProjectId" id="28vbxJUPuWPGc1hK5TIliWwCWCK" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/.." />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="a573552c-2bc6-4e71-bbbc-54524b694656" name="Changes" comment="" />
+      <created>1652100251218</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1652100251218</updated>
+    </task>
+    <servers />
+  </component>
+</project>

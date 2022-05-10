@@ -1,4 +1,4 @@
-import model.User;
+import modelS.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,14 +17,10 @@ public class UserForm extends JDialog {
     private JLabel workOutIcon;
     private JLabel healthIcon;
     private JLabel dateLabel;
-
-
     public LocalDate dateNow = LocalDate.now();
 
-
-    //LoginForm loginForm = new LoginForm(null);
-    //model.User user = loginForm.user;
-    public User user = new User("kassem", "User@", "123");
+    LoginForm loginForm = new LoginForm(null); //calling the loginFrom when the app starts
+    User user = loginForm.user; // making a user each time someone want to log in
 
 
     public  UserForm(JFrame parent) {
@@ -37,7 +33,8 @@ public class UserForm extends JDialog {
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
 
-        dateLabel.setText(dateNow.toString());
+
+        dateLabel.setText(dateNow.toString()); //date in the right upper corner
 
         healthBtn.setBackground(new Color(255,215,0));
         healthBtn.setBorderPainted(false);
@@ -48,16 +45,15 @@ public class UserForm extends JDialog {
         profileBtn.setBackground(new Color(255,215,0));
         profileBtn.setBorderPainted(false);
 
-        String name = user.getName();
-        nameLabel.setText("Welcome " + name);
-
+        nameLabel.setText("Welcome " + user.getName()); //welcoming the user
 
 
         profileBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //this method will be performed when you click on the profile button
                 JOptionPane.showMessageDialog(UserForm.this,
-                        "welcome to your profile: " + user.getName(),
+                        "welcome to your profile: " ,
                         "Profile",
                         JOptionPane.INFORMATION_MESSAGE);
 
@@ -67,6 +63,8 @@ public class UserForm extends JDialog {
         workOutBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                //this method will be performed when you click on the workout button
+
                 JOptionPane.showMessageDialog(UserForm.this,
                         "here we add a new work out",
                         "Work out",
@@ -75,6 +73,8 @@ public class UserForm extends JDialog {
         });
 
         healthBtn.addActionListener(new ActionListener() {
+            //this method will be performed when you click on the health button
+
             @Override
             public void actionPerformed(ActionEvent e) {
                 JOptionPane.showMessageDialog(UserForm.this,
@@ -89,10 +89,8 @@ public class UserForm extends JDialog {
     }
 
     public static void main(String[] args) {
-
-        //model.User user = new model.User("kassem", "kassem@", "123");
-
-        UserForm userForm = new UserForm(null);
+        
+        UserForm userForm = new UserForm(null); // calling the user form. notice that loginForm well be executed befor userForm
         /*
         if(user != null){
 

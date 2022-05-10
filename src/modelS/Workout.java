@@ -1,4 +1,4 @@
-package model;
+package modelS;
 
 public class Workout {
 
