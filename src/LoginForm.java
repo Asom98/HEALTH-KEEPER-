@@ -14,7 +14,7 @@ public class LoginForm extends JDialog{
     private JButton btnLogin;
     //private JButton btnRegistration;
     private JPanel loginPanel;
-    private JButton btnCancel;
+    private JButton btnGoBack;
 
 
     public LoginForm(JFrame parent){
@@ -52,7 +52,7 @@ public class LoginForm extends JDialog{
             }
         });
 
-        btnCancel.addActionListener(new ActionListener() {
+        /*btnCancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
@@ -60,7 +60,20 @@ public class LoginForm extends JDialog{
         });
 
         setVisible(true);
-    }
+    } */
+
+    btnGoBack.addActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            dispose();
+            StartMenu startMenu = new StartMenu(new JFrame());
+
+        }
+    });
+
+    setVisible(true);
+
+}
     /*
         btnRegistration.addActionListener(new ActionListener() {
             @Override

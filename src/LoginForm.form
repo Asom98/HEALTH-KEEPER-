@@ -74,13 +74,13 @@
               <text value="Log in"/>
             </properties>
           </component>
-          <component id="b168f" class="javax.swing.JButton" binding="btnCancel">
+          <component id="b168f" class="javax.swing.JButton" binding="btnGoBack">
             <constraints>
               <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <font name="Arial Rounded MT Bold" size="18" style="0"/>
-              <text value="Cancel"/>
+              <text value="&lt;&lt; Go back"/>
             </properties>
           </component>
         </children>
