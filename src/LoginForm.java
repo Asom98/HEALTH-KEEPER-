@@ -12,8 +12,9 @@ public class LoginForm extends JDialog{
     private JTextField tfEmail;
     private JPasswordField pfPassword;
     private JButton btnLogin;
-    private JButton btnRegistration;
+    //private JButton btnRegistration;
     private JPanel loginPanel;
+    private JButton btnCancel;
 
 
     public LoginForm(JFrame parent){
@@ -51,7 +52,16 @@ public class LoginForm extends JDialog{
             }
         });
 
+        btnCancel.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+            }
+        });
 
+        setVisible(true);
+    }
+    /*
         btnRegistration.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -63,6 +73,8 @@ public class LoginForm extends JDialog{
 
         setVisible(true);
     }
+
+     */
 
     public User user;
     private User getAuthenticatedUser(String email, String password) {
