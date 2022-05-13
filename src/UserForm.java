@@ -1,10 +1,12 @@
-import modelS.User;
+import com.toedter.calendar.JDayChooser;
+import modelS.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.time.LocalDate;
+import java.time.Month;
 
 public class UserForm extends JDialog {
 
@@ -16,8 +18,9 @@ public class UserForm extends JDialog {
     private JLabel profileIcon;
     private JLabel workOutIcon;
     private JLabel healthIcon;
+    private JDayChooser dayChooser;
     private JLabel dateLabel;
-    public LocalDate dateNow = LocalDate.now();
+
 
     LoginForm loginForm = new LoginForm(null); //calling the loginFrom when the app starts
     User user = loginForm.user; // making a user each time someone want to log in
@@ -32,9 +35,11 @@ public class UserForm extends JDialog {
         setLocationRelativeTo(parent);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
+        
 
-
-        dateLabel.setText(dateNow.toString()); //date in the right upper corner
+        LocalDate dateNow = LocalDate.now();
+        Month month = dateNow.getMonth();
+        dateLabel.setText(month+ " " + dateNow.toString()); //date in the right upper corner
 
         healthBtn.setBackground(new Color(255,215,0));
         healthBtn.setBorderPainted(false);
