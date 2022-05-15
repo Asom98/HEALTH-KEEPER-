@@ -14,12 +14,13 @@ public class UserForm extends JDialog {
     private JLabel nameLabel;
     private JButton profileBtn;
     private JButton workOutBtn;
-    private JButton healthBtn;
+    private JButton mealsBtn;
     private JLabel profileIcon;
     private JLabel workOutIcon;
     private JLabel healthIcon;
     private JDayChooser dayChooser;
     private JLabel dateLabel;
+
 
 
     LoginForm loginForm = new LoginForm(null); //calling the loginFrom when the app starts
@@ -30,19 +31,18 @@ public class UserForm extends JDialog {
         super(parent);
         setTitle("User form");
         setContentPane(userPanel);
-        setMinimumSize(new Dimension(520, 476));
+        setMinimumSize(new Dimension(800, 600));
         setModal(true);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
-        
 
         LocalDate dateNow = LocalDate.now();
         Month month = dateNow.getMonth();
         dateLabel.setText(month+ " " + dateNow.toString()); //date in the right upper corner
 
-        healthBtn.setBackground(new Color(255,215,0));
-        healthBtn.setBorderPainted(false);
+        mealsBtn.setBackground(new Color(255,215,0));
+        mealsBtn.setBorderPainted(false);
 
         workOutBtn.setBackground(new Color(255,215,0));
         workOutBtn.setBorderPainted(false);
@@ -78,11 +78,13 @@ public class UserForm extends JDialog {
                         "Work out",
                         JOptionPane.INFORMATION_MESSAGE);
                  */
+                dispose();
                 WorkoutForm workoutForm = new WorkoutForm(null);
+
             }
         });
 
-        healthBtn.addActionListener(new ActionListener() {
+        mealsBtn.addActionListener(new ActionListener() {
             //this method will be performed when you click on the health button
 
             @Override
@@ -94,7 +96,6 @@ public class UserForm extends JDialog {
             }
         });
         setVisible(true);
-
 
     }
 

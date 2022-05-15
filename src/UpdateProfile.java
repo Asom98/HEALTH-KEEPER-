@@ -24,11 +24,12 @@ public class UpdateProfile extends JFrame {
     private JTextField weightTf;
 
 
+    //creating and setting Jframe
     public UpdateProfile(JFrame parent) {
 
         setContentPane(mainPanel);
         setTitle("Update Profile");
-        setSize(520, 476);
+        setSize(800, 600);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
@@ -37,20 +38,27 @@ public class UpdateProfile extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                UserProfile userProfile = new UserProfile();
                 dispose();
+                UserProfile userProfile = new UserProfile();
+
+                //this button should call on UserProfile (need to change the login function)
             }
         });
 
         UPDATEButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                UpdateUser();
+                //this funtion should add and uppdate the table users and Userprofile in database
 
             }
         });
     }
 
+
+    //This method store the value in textfields
     private void UpdateUser() {
+
         String name = nameTf.getText();
         int dateOfBirth = Integer.parseInt(dateOfBirthTf.getText());
         String gender = genderTf.getText();
@@ -59,8 +67,9 @@ public class UpdateProfile extends JFrame {
         float weight = Float.parseFloat(weightTf.getText());
     }
 
-
+    //creating database path and store values in database
     private UpdateProfile updateUserDataBase (String name, int dateOfBirth, String Gender,String email, int height, float weight) {
+
         UpdateProfile UpdateProfile = null;
         User user = new User(name,email, null);
         UserProfile userProfile = new UserProfile(dateOfBirth, Gender, height, weight);

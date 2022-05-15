@@ -17,7 +17,7 @@ public class StartMenu extends JDialog implements ActionListener {
         super(parent);
         setTitle("Login");
         setContentPane(StartMenuPanel);
-        setMinimumSize(new Dimension(520, 476));
+        setMinimumSize(new Dimension(800, 600));
         setModal(true);
         setLocationRelativeTo(null);
 
@@ -64,5 +64,6 @@ public class StartMenu extends JDialog implements ActionListener {
     public static void main(String[] args) {
         StartMenu startMenu = new StartMenu(null);
     }
+
 }
 
