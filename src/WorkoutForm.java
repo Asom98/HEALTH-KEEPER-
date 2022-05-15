@@ -40,9 +40,9 @@ public class WorkoutForm extends JDialog{
     }
 
     public void fetchWorkout(){
-        /*
-        SQL query fetching data from table, displaying it in GUI
-         */
+
+        // SQL query fetching data from table, displaying it in GUI
+
     }
 
     // Add workout to day selected on calendar
