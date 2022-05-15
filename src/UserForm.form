@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="UserForm">
   <grid id="27dc6" binding="userPanel" layout-manager="GridLayoutManager" row-count="6" column-count="6" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-    <margin top="10" left="10" bottom="10" right="10"/>
+    <margin top="20" left="20" bottom="20" right="30"/>
     <constraints>
-      <xy x="20" y="20" width="813" height="570"/>
+      <xy x="20" y="20" width="843" height="570"/>
     </constraints>
     <properties>
       <background color="-2325706"/>
@@ -20,7 +20,7 @@
         <properties>
           <background color="-2325706"/>
           <font name="JetBrains Mono" style="3"/>
-          <foreground color="-2325706"/>
+          <foreground color="-1"/>
           <text value="Profile"/>
         </properties>
       </component>
@@ -31,7 +31,7 @@
         <properties>
           <background color="-2325706"/>
           <font name="JetBrains Mono" style="3"/>
-          <foreground color="-2325706"/>
+          <foreground color="-1"/>
           <text value="Meals"/>
         </properties>
       </component>
@@ -42,7 +42,7 @@
         <properties>
           <background color="-2325706"/>
           <font name="JetBrains Mono" style="3"/>
-          <foreground color="-2325706"/>
+          <foreground color="-1"/>
           <text value="Work Out"/>
         </properties>
       </component>
