@@ -72,11 +72,13 @@ public class UserForm extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 //this method will be performed when you click on the workout button
-
+                /*
                 JOptionPane.showMessageDialog(UserForm.this,
                         "here we add a new work out",
                         "Work out",
                         JOptionPane.INFORMATION_MESSAGE);
+                 */
+                WorkoutForm workoutForm = new WorkoutForm(null);
             }
         });
 
