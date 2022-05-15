@@ -1,3 +1,5 @@
+import com.toedter.calendar.JDayChooser;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -35,9 +37,20 @@ public class WorkoutForm extends JDialog{
         setVisible(true);
     }
 
+    public void fetchWorkout(){
+        /*
+        SQL query fetching data from table, displaying it in GUI
+         */
+    }
+
     // Add workout to day selected on calendar
     public void addWorkout(){
-        // Probably need some fancy sql query magic here
+        JDayChooser dayChooser = new JDayChooser();
+        dayChooser.getDay(); // get selected day from calendar
+        // add day fetched by getDay to db and correlate it's id to the added workout(s)
+        /*
+        SQL query to add workout data to table
+         */
     }
 
     /*
