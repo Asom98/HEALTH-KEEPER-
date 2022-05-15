@@ -32,7 +32,7 @@ public class UserForm extends JDialog {
         setContentPane(userPanel);
         setMinimumSize(new Dimension(520, 476));
         setModal(true);
-        setLocationRelativeTo(parent);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
         
@@ -56,11 +56,14 @@ public class UserForm extends JDialog {
         profileBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+               UserProfileForm userprofile = new UserProfileForm(null);
+               dispose();
+
                 //this method will be performed when you click on the profile button
-                JOptionPane.showMessageDialog(UserForm.this,
+                /*JOptionPane.showMessageDialog(UserForm.this,
                         "welcome to your profile: " ,
                         "Profile",
-                        JOptionPane.INFORMATION_MESSAGE);
+                        JOptionPane.INFORMATION_MESSAGE);*/
 
             }
         });
