@@ -15,7 +15,7 @@ public class WorkoutForm extends JDialog{
         super(parent);
         setTitle("Add Workout");
         setContentPane(WorkoutFormPanel);
-        setMinimumSize(new Dimension(520, 476));
+        setMinimumSize(new Dimension(800, 600));
         setModal(true);
         setLocationRelativeTo(parent);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -30,6 +30,8 @@ public class WorkoutForm extends JDialog{
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
+                UserForm userForm = new UserForm(parent);
+
             }
         });
         setVisible(true);

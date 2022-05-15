@@ -33,10 +33,10 @@ public class UserProfileForm extends JFrame {
 
         setContentPane(MainPanel);
         setTitle("User Profile");
-        setSize(520, 476);
+        setSize(800, 600);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setVisible(true);
+
 
 
         //assigning the column to values
@@ -66,12 +66,16 @@ public class UserProfileForm extends JFrame {
                 if (response == JOptionPane.YES_OPTION){
                     JOptionPane.showMessageDialog(null,
                             "Your account was deleted sucessfully!");
+                    dispose();
                     StartMenu startMenu = new StartMenu(null);
 
                 }else if (response == JOptionPane.NO_OPTION){
                     dispose();
+                    UserProfileForm userProfileForm = new UserProfileForm(null);
+
                 }else {
                     dispose();
+                    UserProfileForm userProfileForm = new UserProfileForm(null);
 
                 }
             }
@@ -80,10 +84,13 @@ public class UserProfileForm extends JFrame {
         GoBackButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                UserForm userForm = new UserForm(null);
                 dispose();
+                UserForm userForm = new UserForm(null);
+
+
             }
         });
+        setVisible(true);
     }
 
 

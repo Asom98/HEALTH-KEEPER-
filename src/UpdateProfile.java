@@ -28,7 +28,7 @@ public class UpdateProfile extends JFrame {
 
         setContentPane(mainPanel);
         setTitle("Update Profile");
-        setSize(520, 476);
+        setSize(800, 600);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setVisible(true);
@@ -37,8 +37,8 @@ public class UpdateProfile extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
 
-                UserProfile userProfile = new UserProfile();
                 dispose();
+                UserProfile userProfile = new UserProfile();
             }
         });
 
