@@ -28,7 +28,7 @@ public class UserProfileForm extends JFrame {
     UserProfile userProfile = new UserProfile();
 
 
-    //setting up Gui
+    //creating and setting up JFrame
     public UserProfileForm(JFrame parent){
 
         setContentPane(MainPanel);
