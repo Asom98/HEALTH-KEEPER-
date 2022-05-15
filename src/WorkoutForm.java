@@ -25,7 +25,7 @@ public class WorkoutForm extends JDialog{
         btnAddWorkout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                // call addWorkout method
             }
         });
         btnCancel.addActionListener(new ActionListener() {
@@ -46,10 +46,16 @@ public class WorkoutForm extends JDialog{
     // Add workout to day selected on calendar
     public void addWorkout(){
         JDayChooser dayChooser = new JDayChooser();
-        dayChooser.getDay(); // get selected day from calendar
+        // get selected day from calendar
+        int myDay = dayChooser.getDay();
+        // get values from form input
+        ComboBoxModel workoutType = cbWorkoutType.getModel();
+        ComboBoxModel workoutHours = cbWorkoutHours.getModel();
+        ComboBoxModel workoutMinutes = cbWorkoutMinutes.getModel();
         // add day fetched by getDay to db and correlate it's id to the added workout(s)
         /*
         SQL query to add workout data to table
+
          */
     }
 
