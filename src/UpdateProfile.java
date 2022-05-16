@@ -16,16 +16,16 @@ public class UpdateProfile extends JFrame {
     private JButton goBackButton;
     private JPanel TopPanel;
     private JPanel InfoPanel;
-    private JTextField nameTf;
     private JTextField dateOfBirthTf;
     private JTextField genderTf;
-    private JTextField emailTf;
     private JTextField heightTf;
     private JTextField weightTf;
 
+    public User user;
+
 
     //creating and setting Jframe
-    public UpdateProfile(JFrame parent) {
+    public UpdateProfile(JFrame parent, User user) {
 
         setContentPane(mainPanel);
         setTitle("Update Profile");
@@ -48,7 +48,8 @@ public class UpdateProfile extends JFrame {
         UPDATEButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                UpdateUser();
+                UpdateUser(user);
+                updateUserDataBase(user);
                 //this funtion should add and uppdate the table users and Userprofile in database
 
             }
@@ -57,22 +58,26 @@ public class UpdateProfile extends JFrame {
 
 
     //This method store the value in textfields
-    private void UpdateUser() {
+    private void UpdateUser(User user) {
 
-        String name = nameTf.getText();
-        int dateOfBirth = Integer.parseInt(dateOfBirthTf.getText());
+        String dateOfBirth = dateOfBirthTf.getText();
         String gender = genderTf.getText();
-        String email = emailTf.getText();
         int height = Integer.parseInt(heightTf.getText());
-        float weight = Float.parseFloat(weightTf.getText());
+        int weight = Integer.parseInt(weightTf.getText());
+
+
+        user.setDateOfBirth(dateOfBirth);
+        user.setGender(gender);
+        user.setHeight(height);
+        user.setWeight(weight);
     }
 
     //creating database path and store values in database
-    private UpdateProfile updateUserDataBase (String name, int dateOfBirth, String Gender,String email, int height, float weight) {
+    private void updateUserDataBase (User user) {
 
-        UpdateProfile UpdateProfile = null;
-        User user = new User(name,email, null);
-        UserProfile userProfile = new UserProfile(dateOfBirth, Gender, height, weight);
+        //UpdateProfile UpdateProfile = null;
+        //User user = new User(name,email, null);
+        //UserProfile userProfile = new UserProfile(dateOfBirth, Gender, height, weight);
 
         final String DB_URL = "jdbc:mysql://eu-cdbr-west-02.cleardb.net/heroku_b7a2d484b13ad29";
         final String USERNAME = "b9ff1b68e68067";
@@ -83,21 +88,21 @@ public class UpdateProfile extends JFrame {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
 
             Statement stmt = conn.createStatement();
-            String sql1 = "INSERT INTO userProfile (dateOfBirth, gender, lenght, weight)" +
-                    "VALUES (?, ?, ?, ?)";
-            PreparedStatement prepStatement = conn.prepareStatement(sql1);
-            prepStatement.setInt(1, dateOfBirth);
-            prepStatement.setString(2, Gender);
-            prepStatement.setInt(3, height);
-            prepStatement.setFloat(4, weight);
+            String sql = "Update users set "
+                    + "    gender = ?, "
+                    + "    dateOfBirth = ?, "
+                    + "    height = ?, "
+                    + "    weight = ? "
+                    + "WHERE name = ? ";
+            PreparedStatement prepStatement2 = conn.prepareStatement(sql);
 
-            int addedRows = prepStatement.executeUpdate();
+            prepStatement2.setString(1, user.getGender());
+            prepStatement2.setString(2, user.getDateOfBirth());
+            prepStatement2.setString(3, String.valueOf(user.getWeight()));
+            prepStatement2.setString(4, String.valueOf(user.getWeight()));
+            prepStatement2.setString(5, user.getName());
 
-            String sql2 = "Update users set (name, email) where userId=?";
-            PreparedStatement prepStatement2 = conn.prepareStatement(sql2);
-            prepStatement2.setString(1,name);
-            prepStatement2.setString(2,email);
-
+            prepStatement2.executeUpdate();
 
             stmt.close();
             conn.close();
@@ -105,7 +110,7 @@ public class UpdateProfile extends JFrame {
             e.printStackTrace();
         }
 
-        return UpdateProfile;
+
     }
 
 }

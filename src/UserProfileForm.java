@@ -24,12 +24,15 @@ public class UserProfileForm extends JFrame {
     private JLabel heightLabel;
     private JLabel weightLabel;
 
-    User user = new User();
-    UserProfile userProfile = new UserProfile();
+    //UserForm userForm = new UserForm(null);
+    //public User user1 = userForm.user;
+
+    //User user = new User();
+    //UserProfile userProfile = new UserProfile();
 
 
     //creating and setting up JFrame
-    public UserProfileForm(JFrame parent){
+    public UserProfileForm(JFrame parent, User user){
 
         setContentPane(MainPanel);
         setTitle("User Profile");
@@ -40,17 +43,17 @@ public class UserProfileForm extends JFrame {
 
         //assigning the column to values
         nameLabel.setText(user.getName());
-        dateOfBirthLabel.setText(String.valueOf(userProfile.getDateOfBirth()));
-        genderLabel.setText(userProfile.getGender());
+        dateOfBirthLabel.setText(String.valueOf(user.getDateOfBirth()));
+        genderLabel.setText(user.getGender());
         emailLabel.setText(user.getEmail());
-        heightLabel.setText(String.valueOf(userProfile.getHeight()));
-        weightLabel.setText(String.valueOf(userProfile.getHeight()));
+        heightLabel.setText(String.valueOf(user.getHeight()));
+        weightLabel.setText(String.valueOf(user.getHeight()));
 
         //when clicking on this button it should open the updateProfileForm
         updateProfileButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                UpdateProfile updateProfile = new UpdateProfile(null);
+                UpdateProfile updateProfile = new UpdateProfile(null, user);
             }
         });
         //when clicking on this button, a popup should show up with choices.
@@ -70,11 +73,11 @@ public class UserProfileForm extends JFrame {
 
                 }else if (response == JOptionPane.NO_OPTION){
                     dispose();
-                    UserProfileForm userProfileForm = new UserProfileForm(null);
+                    UserProfileForm userProfileForm = new UserProfileForm(null, user);
 
                 }else {
                     dispose();
-                    UserProfileForm userProfileForm = new UserProfileForm(null);
+                    UserProfileForm userProfileForm = new UserProfileForm(null, user);
 
                 }
             }
@@ -92,7 +95,7 @@ public class UserProfileForm extends JFrame {
 
 
     public static void main(String[] args) {
-        UserProfileForm userProfileForm = new UserProfileForm(null);
+        //UserProfileForm userProfileForm = new UserProfileForm(null,null);
 
     }
 

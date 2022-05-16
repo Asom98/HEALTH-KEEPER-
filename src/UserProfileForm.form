@@ -53,7 +53,7 @@
             <properties>
               <background color="-2325706"/>
               <font name="Arial Rounded MT Bold" size="18" style="0"/>
-              <foreground color="-2325706"/>
+              <foreground color="-1"/>
               <text value="Delete Profile"/>
             </properties>
           </component>
@@ -64,7 +64,7 @@
             <properties>
               <background color="-2325706"/>
               <font name="Arial Rounded MT Bold" size="18" style="0"/>
-              <foreground color="-2325706"/>
+              <foreground color="-1"/>
               <text value="Update Profile"/>
             </properties>
           </component>
@@ -75,7 +75,7 @@
             <properties>
               <background color="-2325706"/>
               <font name="Arial Rounded MT Bold" size="18" style="0"/>
-              <foreground color="-2325706"/>
+              <foreground color="-1"/>
               <text value="&lt;&lt;&lt; Go Back"/>
             </properties>
           </component>

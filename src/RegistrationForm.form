@@ -106,7 +106,7 @@
         <properties>
           <background color="-2325706"/>
           <font name="Arial Rounded MT Bold" size="18" style="0"/>
-          <foreground color="-2325706"/>
+          <foreground color="-1"/>
           <text value="Register"/>
         </properties>
       </component>
@@ -117,7 +117,7 @@
         <properties>
           <background color="-2325706"/>
           <font name="Arial Rounded MT Bold" size="18" style="0"/>
-          <foreground color="-2325706"/>
+          <foreground color="-1"/>
           <text value="Cancel"/>
         </properties>
       </component>
