@@ -1,13 +1,9 @@
 import modelS.User;
-import modelS.UserProfile;
 
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.Statement;
+import java.sql.*;
 import javax.swing.JOptionPane;
 
 public class UserProfileForm extends JFrame {
@@ -15,7 +11,7 @@ public class UserProfileForm extends JFrame {
     private JPanel TopPanel;
     private JPanel LeftPanel;
     private JButton updateProfileButton;
-    private JButton deleteProfileButton;
+    private JButton deleteAccountButton;
     private JButton GoBackButton;
     private JLabel nameLabel;
     private JLabel dateOfBirthLabel;
@@ -24,12 +20,15 @@ public class UserProfileForm extends JFrame {
     private JLabel heightLabel;
     private JLabel weightLabel;
 
-    User user = new User();
-    UserProfile userProfile = new UserProfile();
+    //UserForm userForm = new UserForm(null);
+    //public User user1 = userForm.user;
+
+    //User user = new User();
+    //UserProfile userProfile = new UserProfile();
 
 
     //creating and setting up JFrame
-    public UserProfileForm(JFrame parent){
+    public UserProfileForm(JFrame parent, User user) throws SQLException {
 
         setContentPane(MainPanel);
         setTitle("User Profile");
@@ -37,25 +36,31 @@ public class UserProfileForm extends JFrame {
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
+        ResultSet rs = getUserInfo(user);
+        while (rs.next()){
 
+            nameLabel.setText(rs.getString("name"));
+            emailLabel.setText(rs.getString("email"));
+            genderLabel.setText(rs.getString("gender"));
+            heightLabel.setText(rs.getString("height"));
+            weightLabel.setText(rs.getString("weight"));
+            dateOfBirthLabel.setText(rs.getString("dateOfBirth"));
+
+        }
         //assigning the column to values
-        nameLabel.setText(user.getName());
-        dateOfBirthLabel.setText(String.valueOf(userProfile.getDateOfBirth()));
-        genderLabel.setText(userProfile.getGender());
-        emailLabel.setText(user.getEmail());
-        heightLabel.setText(String.valueOf(userProfile.getHeight()));
-        weightLabel.setText(String.valueOf(userProfile.getHeight()));
+
 
         //when clicking on this button it should open the updateProfileForm
         updateProfileButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                UpdateProfile updateProfile = new UpdateProfile(null);
+                UpdateProfile updateProfile = new UpdateProfile(null, user);
+
             }
         });
         //when clicking on this button, a popup should show up with choices.
         // The user get deleted if confermed. (still need to fix this part)
-        deleteProfileButton.addActionListener(new ActionListener() {
+        deleteAccountButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 int response = JOptionPane.showConfirmDialog(null,
@@ -63,6 +68,7 @@ public class UserProfileForm extends JFrame {
                         "Confirm",
                         JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.QUESTION_MESSAGE);
                 if (response == JOptionPane.YES_OPTION){
+                    deletAccount(user);
                     JOptionPane.showMessageDialog(null,
                             "Your account was deleted sucessfully!");
                     dispose();
@@ -70,11 +76,19 @@ public class UserProfileForm extends JFrame {
 
                 }else if (response == JOptionPane.NO_OPTION){
                     dispose();
-                    UserProfileForm userProfileForm = new UserProfileForm(null);
+                    try {
+                        UserProfileForm userProfileForm = new UserProfileForm(null, user);
+                    } catch (SQLException ex) {
+                        throw new RuntimeException(ex);
+                    }
 
                 }else {
                     dispose();
-                    UserProfileForm userProfileForm = new UserProfileForm(null);
+                    try {
+                        UserProfileForm userProfileForm = new UserProfileForm(null, user);
+                    } catch (SQLException ex) {
+                        throw new RuntimeException(ex);
+                    }
 
                 }
             }
@@ -90,9 +104,54 @@ public class UserProfileForm extends JFrame {
         setVisible(true);
     }
 
+    public ResultSet getUserInfo(User user){
+
+        ResultSet res = null;
+        final String DB_URL = "jdbc:mysql://eu-cdbr-west-02.cleardb.net/heroku_b7a2d484b13ad29";
+        final String USERNAME = "b9ff1b68e68067";
+        final String PASSWORD = "a4162bab";
+
+        try{
+            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+            Statement stmt = conn.createStatement();
+            String sql = "Select name, email, gender, height, weight, dateOfBirth From users where name = ?";
+            PreparedStatement stm = conn.prepareStatement(sql);
+            stm.setString(1, user.getName());
+            res = stm.executeQuery();
+
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
+
+        return res;
+    }
+
+    public void deletAccount(User user){
+
+        final String DB_URL = "jdbc:mysql://eu-cdbr-west-02.cleardb.net/heroku_b7a2d484b13ad29";
+        final String USERNAME = "b9ff1b68e68067";
+        final String PASSWORD = "a4162bab";
+
+
+        try{
+            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+            Statement stmt = conn.createStatement();
+            String sql = "Delete from users where name = ?";
+            PreparedStatement stm = conn.prepareStatement(sql);
+            stm.setString(1, user.getName());
+            stm.executeUpdate();
+
+
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 
     public static void main(String[] args) {
-        UserProfileForm userProfileForm = new UserProfileForm(null);
+        //UserProfileForm userProfileForm = new UserProfileForm(null,null);
 
     }
 

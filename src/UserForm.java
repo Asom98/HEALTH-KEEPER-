@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Month;
 
@@ -21,10 +22,12 @@ public class UserForm extends JDialog {
     private JDayChooser dayChooser;
     private JLabel dateLabel;
 
-
-
     LoginForm loginForm = new LoginForm(null); //calling the loginFrom when the app starts
-    User user = loginForm.user; // making a user each time someone want to log in
+    User user = loginForm.user;
+
+
+
+     // making a user each time someone want to log in
 
 
     public  UserForm(JFrame parent) {
@@ -56,8 +59,13 @@ public class UserForm extends JDialog {
         profileBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-               UserProfileForm userprofile = new UserProfileForm(null);
-               dispose();
+                dispose();
+                try {
+                    UserProfileForm userprofile = new UserProfileForm(null, user);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+
 
                 //this method will be performed when you click on the profile button
                 /*JOptionPane.showMessageDialog(UserForm.this,
@@ -97,9 +105,15 @@ public class UserForm extends JDialog {
         });
         setVisible(true);
 
+
+
     }
 
+
+
     public static void main(String[] args) {
+
+
         
         UserForm userForm = new UserForm(null); // calling the user form. notice that loginForm well be executed befor userForm
         /*

@@ -1,6 +1,7 @@
 package modelS;
 
 public class UserProfile {
+
     private int dateOfBirth;
     private String Gender;
     private int height;

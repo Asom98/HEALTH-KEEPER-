@@ -37,7 +37,7 @@
               </component>
             </children>
           </grid>
-          <grid id="82c7b" binding="InfoPanel" layout-manager="GridLayoutManager" row-count="7" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+          <grid id="82c7b" binding="InfoPanel" layout-manager="GridLayoutManager" row-count="5" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
             <margin top="5" left="5" bottom="5" right="5"/>
             <constraints border-constraint="Center"/>
             <properties>
@@ -49,39 +49,29 @@
             <children>
               <component id="9fc0d" class="javax.swing.JButton" binding="UPDATEButton" default-binding="true">
                 <constraints>
-                  <grid row="6" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <background color="-2325706"/>
                   <font name="Arial Rounded MT Bold" size="18" style="0"/>
-                  <foreground color="-2325706"/>
+                  <foreground color="-1"/>
                   <text value="UPDATE"/>
                 </properties>
               </component>
               <component id="2f15a" class="javax.swing.JButton" binding="goBackButton" default-binding="true">
                 <constraints>
-                  <grid row="6" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
+                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <background color="-2325706"/>
                   <font name="Arial Rounded MT Bold" size="18" style="0"/>
-                  <foreground color="-2325706"/>
-                  <text value="&lt;&lt;&lt; Go Back"/>
-                </properties>
-              </component>
-              <component id="24116" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <font name="Arial Rounded MT Bold" size="18" style="0"/>
                   <foreground color="-1"/>
-                  <text value="Name:"/>
+                  <text value="&lt;&lt;&lt; Go Back"/>
                 </properties>
               </component>
               <component id="89cad" class="javax.swing.JLabel">
                 <constraints>
-                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <font name="Arial Rounded MT Bold" size="18" style="0"/>
@@ -91,7 +81,7 @@
               </component>
               <component id="9c6d1" class="javax.swing.JLabel">
                 <constraints>
-                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <font name="Arial Rounded MT Bold" size="18" style="0"/>
@@ -99,19 +89,9 @@
                   <text value="Gender:"/>
                 </properties>
               </component>
-              <component id="5a36a" class="javax.swing.JLabel">
-                <constraints>
-                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
-                </constraints>
-                <properties>
-                  <font name="Arial Rounded MT Bold" size="18" style="0"/>
-                  <foreground color="-1"/>
-                  <text value="E-mail:"/>
-                </properties>
-              </component>
               <component id="54f0b" class="javax.swing.JLabel">
                 <constraints>
-                  <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <font name="Arial Rounded MT Bold" size="18" style="0"/>
@@ -121,7 +101,7 @@
               </component>
               <component id="7f7b9" class="javax.swing.JLabel">
                 <constraints>
-                  <grid row="5" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
+                  <grid row="3" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
                 </constraints>
                 <properties>
                   <font name="Arial Rounded MT Bold" size="18" style="0"/>
@@ -129,7 +109,7 @@
                   <text value="Weight:"/>
                 </properties>
               </component>
-              <component id="6d7e5" class="javax.swing.JTextField" binding="nameTf">
+              <component id="78863" class="javax.swing.JTextField" binding="dateOfBirthTf">
                 <constraints>
                   <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -139,7 +119,7 @@
                   <background color="-1"/>
                 </properties>
               </component>
-              <component id="78863" class="javax.swing.JTextField" binding="dateOfBirthTf">
+              <component id="14fe4" class="javax.swing.JTextField" binding="genderTf">
                 <constraints>
                   <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -149,7 +129,7 @@
                   <background color="-1"/>
                 </properties>
               </component>
-              <component id="14fe4" class="javax.swing.JTextField" binding="genderTf">
+              <component id="2ef15" class="javax.swing.JTextField" binding="heightTf">
                 <constraints>
                   <grid row="2" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
@@ -159,29 +139,9 @@
                   <background color="-1"/>
                 </properties>
               </component>
-              <component id="4f2d4" class="javax.swing.JTextField" binding="emailTf">
-                <constraints>
-                  <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="-1"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <background color="-1"/>
-                </properties>
-              </component>
-              <component id="2ef15" class="javax.swing.JTextField" binding="heightTf">
-                <constraints>
-                  <grid row="4" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
-                    <preferred-size width="150" height="-1"/>
-                  </grid>
-                </constraints>
-                <properties>
-                  <background color="-1"/>
-                </properties>
-              </component>
               <component id="75d48" class="javax.swing.JTextField" binding="weightTf">
                 <constraints>
-                  <grid row="5" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
+                  <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="8" fill="1" indent="0" use-parent-layout="false">
                     <preferred-size width="150" height="-1"/>
                   </grid>
                 </constraints>
