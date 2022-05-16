@@ -11,6 +11,7 @@ public class StartMenu extends JDialog implements ActionListener {
     private JButton btnLogin;
     private JButton btnRegistration;
     private JPanel StartMenuPanel;
+    private JLabel txInfo;
 
     public StartMenu(JFrame parent){
 
