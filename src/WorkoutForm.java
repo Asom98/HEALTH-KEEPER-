@@ -4,6 +4,10 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.Statement;
 
 public class WorkoutForm extends JDialog{
     private JComboBox cbWorkoutType;
@@ -33,16 +37,9 @@ public class WorkoutForm extends JDialog{
             public void actionPerformed(ActionEvent e) {
                 dispose();
                 UserForm userForm = new UserForm(parent);
-
             }
         });
         setVisible(true);
-    }
-
-    public void fetchWorkout(){
-
-        // SQL query fetching data from table, displaying it in GUI
-
     }
 
     // Add workout to day selected on calendar
@@ -54,10 +51,54 @@ public class WorkoutForm extends JDialog{
         ComboBoxModel workoutType = cbWorkoutType.getModel();
         ComboBoxModel workoutHours = cbWorkoutHours.getModel();
         ComboBoxModel workoutMinutes = cbWorkoutMinutes.getModel();
-        // add day fetched by getDay to db and correlate it's id to the added workout(s)
-        /*
-        SQL query to add workout data to table
 
+        final String DB_URL = "jdbc:mysql://eu-cdbr-west-02.cleardb.net/heroku_b7a2d484b13ad29";
+        final String USERNAME = "b9ff1b68e68067";
+        final String PASSWORD = "a4162bab";
+
+        try{
+            Connection conn = DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
+
+            Statement stmt = conn.createStatement();
+            String sql = "INSERT INTO workout" +
+                    "VALUES (?, ?, ?);";
+
+            PreparedStatement prepStatement = conn.prepareStatement(sql);
+            prepStatement.setString(1, String.valueOf(workoutType));
+            prepStatement.setString(2, String.valueOf(workoutHours));
+            prepStatement.setString(3, String.valueOf(workoutMinutes));
+
+            int addedRows = prepStatement.executeUpdate();
+
+            // If the write operation was successful
+            if (addedRows > 0) {
+                // Probably don't need to do anything
+            }
+
+            stmt.close();
+            conn.close();
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+    }
+
+    public void fetchWorkout(){
+
+        /*
+        retrieve values from db
+
+        sql =
+            select type, duration, kcalUsed
+            from workout
+            where workout.user_id = user.id
+         */
+    }
+
+    public void displayWorkout(){
+        /*
+        display workout with proper formatting
+        use this for output on userForm
          */
     }
 
@@ -66,8 +107,11 @@ public class WorkoutForm extends JDialog{
      Display value on WorkoutForm label and also on UserForm once workout has been added
      Maybe add space under UserForm calendar for displaying workouts?
      */
-    public int calorieCalc(){
-        return 0; // <- placeholder value to prevent syntax error
+    public void calorieCalc(){
+        /*
+        leaving this for now, getting a decent estimation needs some time
+         */
+
     }
 
     public static void main(String[] args) {

@@ -38,7 +38,6 @@ public class UserProfileForm extends JFrame {
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
 
 
-
         //assigning the column to values
         nameLabel.setText(user.getName());
         dateOfBirthLabel.setText(String.valueOf(userProfile.getDateOfBirth()));
@@ -86,8 +85,6 @@ public class UserProfileForm extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 dispose();
                 UserForm userForm = new UserForm(null);
-
-
             }
         });
         setVisible(true);

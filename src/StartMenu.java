@@ -39,7 +39,6 @@ public class StartMenu extends JDialog implements ActionListener {
                 RegistrationForm registrationForm = new RegistrationForm(new JFrame());
                 StartMenu startMenu = new StartMenu(null);
 
-
             }
         });
 
