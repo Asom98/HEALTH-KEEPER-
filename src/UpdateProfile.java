@@ -4,10 +4,7 @@ import modelS.UserProfile;
 import javax.swing.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.Statement;
+import java.sql.*;
 
 public class UpdateProfile extends JFrame {
     private JPanel panel1;
@@ -50,6 +47,13 @@ public class UpdateProfile extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 UpdateUser(user);
                 updateUserDataBase(user);
+                try {
+
+                    UserProfileForm userProfileForm = new UserProfileForm(null, user);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
+
                 //this funtion should add and uppdate the table users and Userprofile in database
 
             }

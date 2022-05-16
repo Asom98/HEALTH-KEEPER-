@@ -5,6 +5,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Month;
 
@@ -59,7 +60,11 @@ public class UserForm extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                UserProfileForm userprofile = new UserProfileForm(null, user);
+                try {
+                    UserProfileForm userprofile = new UserProfileForm(null, user);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
 
 
                 //this method will be performed when you click on the profile button
