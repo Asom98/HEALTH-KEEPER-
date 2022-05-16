@@ -47,6 +47,7 @@ public class UpdateProfile extends JFrame {
             public void actionPerformed(ActionEvent e) {
                 UpdateUser(user);
                 updateUserDataBase(user);
+                dispose();
                 try {
 
                     UserProfileForm userProfileForm = new UserProfileForm(null, user);

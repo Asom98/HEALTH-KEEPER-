@@ -55,6 +55,7 @@ public class UserProfileForm extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 UpdateProfile updateProfile = new UpdateProfile(null, user);
+                dispose();
 
             }
         });
