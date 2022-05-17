@@ -30,8 +30,8 @@ public class WorkoutForm extends JDialog{
             @Override
             public void actionPerformed(ActionEvent e) {
                 JDayChooser dayChooser = new JDayChooser();
-                int myDay = dayChooser.get();
-                System.out.println(myDay);
+                //int myDay = dayChooser.get();
+                //System.out.println(myDay);
                 // call addWorkout method
             }
         });

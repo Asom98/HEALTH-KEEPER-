@@ -4,14 +4,11 @@ public class User {
     public String name;
     public String email;
     public String password;
-
     private String dateOfBirth;
-    private String Gender;
+
+    private String gender;
     private int height;
     private int weight;
-
-
-    //private ArrayList<> days;
 
 
     public User() {
@@ -25,7 +22,7 @@ public class User {
 
     public User (String dateOfBirth, String gender, int height, int weight){
         this.dateOfBirth = dateOfBirth;
-        this.Gender = gender;
+        this.gender = gender;
         this.height = height;
         this.weight = weight;
     }
@@ -64,11 +61,11 @@ public class User {
     }
 
     public String getGender() {
-        return Gender;
+        return gender;
     }
 
     public void setGender (String gender){
-        this.Gender = Gender;
+        this.gender = gender;
     }
 
     public int getHeight() {
