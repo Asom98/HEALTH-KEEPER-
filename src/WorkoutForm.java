@@ -29,6 +29,9 @@ public class WorkoutForm extends JDialog{
         btnAddWorkout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+                JDayChooser dayChooser = new JDayChooser();
+                int myDay = dayChooser.get();
+                System.out.println(myDay);
                 // call addWorkout method
             }
         });
@@ -36,7 +39,7 @@ public class WorkoutForm extends JDialog{
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                UserForm userForm = new UserForm(parent);
+                UserForm userForm = new UserForm(null);
             }
         });
         setVisible(true);
@@ -44,9 +47,11 @@ public class WorkoutForm extends JDialog{
 
     // Add workout to day selected on calendar
     public void addWorkout(){
-        JDayChooser dayChooser = new JDayChooser();
+
         // get selected day from calendar
-        int myDay = dayChooser.getDay();
+
+
+       /*
         // get values from form input
         ComboBoxModel workoutType = cbWorkoutType.getModel();
         ComboBoxModel workoutHours = cbWorkoutHours.getModel();
@@ -83,6 +88,8 @@ public class WorkoutForm extends JDialog{
         }
     }
 
+        */
+/*
     public void fetchWorkout(){
 
         /*
@@ -94,6 +101,7 @@ public class WorkoutForm extends JDialog{
             where workout.user_id = user.id
          */
     }
+
 
     public void displayWorkout(){
         /*
@@ -115,6 +123,8 @@ public class WorkoutForm extends JDialog{
     }
 
     public static void main(String[] args) {
-        WorkoutForm workoutForm = new WorkoutForm(null);
+       WorkoutForm workoutForm = new WorkoutForm(null);
+
+
     }
 }

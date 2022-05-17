@@ -39,7 +39,7 @@
         <properties>
           <background color="-1"/>
           <font name="Arial Rounded MT Bold" size="18" style="0"/>
-          <foreground color="-2325706"/>
+          <foreground color="-16777216"/>
           <hideActionText value="false"/>
           <text value="Register"/>
         </properties>
@@ -73,7 +73,7 @@
         <properties>
           <background color="-1"/>
           <font name="Arial Rounded MT Bold" size="18" style="0"/>
-          <foreground color="-2325706"/>
+          <foreground color="-16777216"/>
           <text value="Login"/>
         </properties>
       </component>

@@ -1,0 +1,27 @@
+
+A
+java:S1948"&Make "user" transient or serializable.(£ξϋÿÿÿÿ
+H
+java:S1481V"-Remove this unused "userForm" local variable.(ΔÒ‡ϋÿÿÿÿ
+S
+java:S1117W"8Rename "user" which hides the field declared at line 22.(„θ“ώÿÿÿÿ
+K
+java:S1068"5Remove this unused "pfConfirmPassword" private field.(ΕίϋΡ
+>
+java:S1604&"(Make this anonymous inner class a lambda(Σ„ά…
+>
+java:S1604,"(Make this anonymous inner class a lambda(κ•ϊΔ
+€
+java:S1488}"eImmediately return this expression instead of assigning it to the temporary variable "encodedString".(™¦φ…όÿÿÿÿ
+k
+java:S1104"PMake user a static final constant or non-public and provide accessors if needed.(£ξϋÿÿÿÿ
+0
+java:S1220""Move this file to a named package.
+b
+java:S2095`"GUse try-with-resources or close this "Statement" in a "finally" clause.(μο‡ΐϋÿÿÿÿ
+^
+java:S2095^"HUse try-with-resources or close this "Connection" in a "finally" clause.(ω©Ο•
+e
+java:S2095c"OUse try-with-resources or close this "PreparedStatement" in a "finally" clause.(‚ΈΨ
+^
+java:S2583J"CChange this condition so that it does not always evaluate to "true"(¤¦ί‘όÿÿÿÿ

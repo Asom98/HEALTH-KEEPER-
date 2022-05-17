@@ -1,0 +1,22 @@
+
+i	java:S116"TRename this field "MainPanel" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ìœÚö
+m	java:S116"SRename this field "TopPanel" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ˆá¾Ôøÿÿÿÿ
+n	java:S116"TRename this field "LeftPanel" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ãøÕ¾ûÿÿÿÿ
+k	java:S116"WRename this field "GoBackButton" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÇÖ†/
+Y
+java:S1854b"CRemove this useless assignment to local variable "userProfileForm".(ÔÒ¼é
+j
+java:S1128"TRemove this unnecessary import: same package classes are always implicitly imported.(¥ËôÖ
+j
+java:S1128"TRemove this unnecessary import: same package classes are always implicitly imported.(“£°
+o
+java:S1128	"TRemove this unnecessary import: same package classes are always implicitly imported.(òÄ™ƒÿÿÿÿÿ
+j
+java:S1128
+"TRemove this unnecessary import: same package classes are always implicitly imported.(ÏÖÔø
+G
+java:S1068",Remove this unused "TopPanel" private field.(ˆá¾Ôøÿÿÿÿ
+H
+java:S1068"-Remove this unused "LeftPanel" private field.(ãøÕ¾ûÿÿÿÿ
+0
+java:S1220""Move this file to a named package.
