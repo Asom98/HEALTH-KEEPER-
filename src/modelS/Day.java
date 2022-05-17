@@ -1,16 +1,15 @@
 package modelS;
 
 import java.util.ArrayList;
+import java.util.Date;
 
 public class Day {
-    public enum days {Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday }
-
-
+    private Date date;
     private ArrayList<Workout> workouts;
     private ArrayList<Food> foods;
 
-    public Day(){
-
+    public Day(Date date){
+        this.date = date;
     }
 
     public ArrayList<Workout> getWorkouts() {
@@ -29,8 +28,11 @@ public class Day {
         this.foods = foods;
     }
 
-    public Day(days day){
-
+    public Date getDate() {
+        return date;
     }
 
+    public void setDate(Date date) {
+        this.date = date;
+    }
 }

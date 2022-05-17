@@ -3,8 +3,10 @@ import modelS.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.Month;
@@ -21,6 +23,10 @@ public class UserForm extends JDialog {
     private JLabel healthIcon;
     private JDayChooser dayChooser;
     private JLabel dateLabel;
+    private JLabel dayLabel;
+    private JList dayList;
+    private JLabel showLabel;
+
 
     LoginForm loginForm = new LoginForm(null); //calling the loginFrom when the app starts
     User user = loginForm.user;
@@ -41,8 +47,10 @@ public class UserForm extends JDialog {
 
 
         LocalDate dateNow = LocalDate.now();
-        Month month = dateNow.getMonth();
-        dateLabel.setText(month+ " " + dateNow.toString()); //date in the right upper corner
+        Month monthText = dateNow.getMonth();
+        Integer monthValue = dateNow.getMonthValue();
+        Integer yearValue = dateNow.getYear();
+        dateLabel.setText(monthText+ " " + dateNow.toString()); //date in the right upper corner
 
         mealsBtn.setBackground(new Color(255,215,0));
         mealsBtn.setBorderPainted(false);
@@ -56,6 +64,8 @@ public class UserForm extends JDialog {
         nameLabel.setText("Welcome " + user.getName()); //welcoming the user
 
 
+
+
         profileBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -65,27 +75,12 @@ public class UserForm extends JDialog {
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
-
-
-                //this method will be performed when you click on the profile button
-                /*JOptionPane.showMessageDialog(UserForm.this,
-                        "welcome to your profile: " ,
-                        "Profile",
-                        JOptionPane.INFORMATION_MESSAGE);*/
-
             }
         });
 
         workOutBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //this method will be performed when you click on the workout button
-                /*
-                JOptionPane.showMessageDialog(UserForm.this,
-                        "here we add a new work out",
-                        "Work out",
-                        JOptionPane.INFORMATION_MESSAGE);
-                 */
                 dispose();
                 WorkoutForm workoutForm = new WorkoutForm(null);
 
@@ -103,30 +98,28 @@ public class UserForm extends JDialog {
                         JOptionPane.INFORMATION_MESSAGE);
             }
         });
-        setVisible(true);
 
+        dayChooser.addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                //SimpleDateFormat dcn = new SimpleDateFormat("yyyy-MM-dd");
+
+                String date = String.valueOf(yearValue + "-" + monthValue + "-" + dayChooser.getDay()) ;
+                //dayLabel.setText(date);
+                Day day = new Day(Date.valueOf(date));
+                dayLabel.setText(String.valueOf(day.getDate()));
+
+
+            }
+        });
+        setVisible(true);
 
 
     }
 
-
-
     public static void main(String[] args) {
 
-
-        
         UserForm userForm = new UserForm(null); // calling the user form. notice that loginForm well be executed befor userForm
-        /*
-        if(user != null){
-
-
-
-        }else {
-            System.out.printf("try agin");
-        }*/
-
-
-
     }
 
 }

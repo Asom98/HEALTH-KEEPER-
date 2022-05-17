@@ -138,4 +138,31 @@ public class RegistrationForm extends JDialog{
             System.out.println("Registration cancelled");
         }
     }
+
+    public boolean checkName(String name){
+
+        if (name.isEmpty() && name.length() < 4){
+            return false;
+        }else {
+            return true;
+        }
+    }
+
+    public boolean checkEmail(String email){
+
+        if (email.isEmpty() && !email.contains("@")){
+            return false;
+        }else {
+            return true;
+        }
+    }
+
+    public boolean checkPassword(String password){
+
+        if (password.isEmpty() && password.length() < 4){
+            return false;
+        }else {
+            return true;
+        }
+    }
 }
