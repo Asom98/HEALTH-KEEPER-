@@ -4,6 +4,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusEvent;
+import java.awt.event.FocusListener;
 import java.sql.*;
 
 public class MealsForm extends JDialog{
@@ -25,6 +27,37 @@ public class MealsForm extends JDialog{
         setModal(true);
         setLocationRelativeTo(parent);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+        DateTf.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                DateTf.setText("");
+            }
+            @Override
+            public void focusLost(FocusEvent e) {
+            }
+        });
+
+        FoodTf.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                FoodTf.setText("");
+            }
+            @Override
+            public void focusLost(FocusEvent e) {
+            }
+        });
+
+        CaloriesTf.addFocusListener(new FocusListener() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                CaloriesTf.setText("");
+            }
+            @Override
+            public void focusLost(FocusEvent e) {
+            }
+        });
+
 
         addMealsButton.addActionListener(new ActionListener() {
             @Override
