@@ -1,4 +1,5 @@
 import com.toedter.calendar.JDayChooser;
+import modelS.User;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,7 +18,7 @@ public class WorkoutForm extends JDialog{
     private JButton btnCancel;
     private JPanel WorkoutFormPanel;
 
-    public WorkoutForm(JFrame parent) {
+    public WorkoutForm(JFrame parent, User user) {
         super(parent);
         setTitle("Add Workout");
         setContentPane(WorkoutFormPanel);
@@ -39,7 +40,7 @@ public class WorkoutForm extends JDialog{
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                UserForm userForm = new UserForm(null);
+                UserForm userForm = new UserForm(user);
             }
         });
         setVisible(true);
@@ -123,7 +124,7 @@ public class WorkoutForm extends JDialog{
     }
 
     public static void main(String[] args) {
-       WorkoutForm workoutForm = new WorkoutForm(null);
+       //WorkoutForm workoutForm = new WorkoutForm(null);
 
 
     }

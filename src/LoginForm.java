@@ -33,7 +33,6 @@ public class LoginForm extends JDialog{
             public void actionPerformed(ActionEvent e) {
                 String email = tfEmail.getText();
                 String password = String.valueOf(pfPassword.getPassword());
-
                 user = getAuthenticatedUser(email, password);
 
                 if (user != null){
@@ -41,7 +40,9 @@ public class LoginForm extends JDialog{
                             "logged in successfully: " + user.getName(),
                             "Welcome",
                             JOptionPane.INFORMATION_MESSAGE);
-                    dispose();
+
+                            dispose();
+                            new UserForm(user).setVisible(true);
                 }
                 else {
                     JOptionPane.showMessageDialog(LoginForm.this,

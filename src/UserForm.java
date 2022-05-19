@@ -28,16 +28,8 @@ public class UserForm extends JDialog {
     private JLabel showLabel;
 
 
-    LoginForm loginForm = new LoginForm(null); //calling the loginFrom when the app starts
-    User user = loginForm.user;
 
-
-
-     // making a user each time someone want to log in
-
-
-    public  UserForm(JFrame parent) {
-        super(parent);
+    public  UserForm(User user) {
         setTitle("User form");
         setContentPane(userPanel);
         setMinimumSize(new Dimension(800, 600));
@@ -60,21 +52,19 @@ public class UserForm extends JDialog {
 
         profileBtn.setBackground(new Color(255,215,0));
         profileBtn.setBorderPainted(false);
-
         nameLabel.setText("Welcome " + user.getName()); //welcoming the user
-
-
 
 
         profileBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose();
                 try {
+
                     UserProfileForm userprofile = new UserProfileForm(null, user);
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
+                dispose();
             }
         });
 
@@ -82,7 +72,7 @@ public class UserForm extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                WorkoutForm workoutForm = new WorkoutForm(null);
+                WorkoutForm workoutForm = new WorkoutForm(null, user);
 
             }
         });
@@ -119,7 +109,7 @@ public class UserForm extends JDialog {
 
     public static void main(String[] args) {
 
-        UserForm userForm = new UserForm(null); // calling the user form. notice that loginForm well be executed befor userForm
+        //UserForm userForm = new UserForm(null); // calling the user form. notice that loginForm well be executed befor userForm
     }
 
 }

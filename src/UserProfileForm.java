@@ -20,12 +20,6 @@ public class UserProfileForm extends JFrame {
     private JLabel heightLabel;
     private JLabel weightLabel;
 
-    //UserForm userForm = new UserForm(null);
-    //public User user1 = userForm.user;
-
-    //User user = new User();
-    //UserProfile userProfile = new UserProfile();
-
 
     //creating and setting up JFrame
     public UserProfileForm(JFrame parent, User user) throws SQLException {
@@ -47,6 +41,7 @@ public class UserProfileForm extends JFrame {
             dateOfBirthLabel.setText(rs.getString("dateOfBirth"));
 
         }
+
         //assigning the column to values
 
 
@@ -99,7 +94,7 @@ public class UserProfileForm extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                UserForm userForm = new UserForm(null);
+                UserForm userForm = new UserForm(user);
             }
         });
         setVisible(true);
