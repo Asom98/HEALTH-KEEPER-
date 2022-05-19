@@ -6,12 +6,13 @@ public class Workout {
 
     private String workOutTyp;
     private int duration;
+    private Date date;
 
 
-    public Workout(String workOutTyp,int duration) {
+    public Workout(String workOutTyp,int duration,Date date) {
         this.workOutTyp = workOutTyp;
         this.duration = duration;
-
+        this.date = date;
 
     }
 
@@ -30,6 +31,14 @@ public class Workout {
 
     public void setWorkOutTyp(String workOutTyp) {
         this.workOutTyp = workOutTyp;
+    }
+
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
     }
 
     @Override
