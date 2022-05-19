@@ -42,7 +42,7 @@ public class LoginForm extends JDialog{
                             JOptionPane.INFORMATION_MESSAGE);
 
                             dispose();
-                            new UserForm(user).setVisible(true);
+                            new UserForm(user);
                 }
                 else {
                     JOptionPane.showMessageDialog(LoginForm.this,
