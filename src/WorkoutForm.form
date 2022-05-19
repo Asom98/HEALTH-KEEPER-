@@ -36,7 +36,7 @@
         <properties>
           <font name="Arial Rounded MT Bold" size="16" style="0"/>
           <foreground color="-1"/>
-          <text value="Date"/>
+          <text value="Date(YYYY-MM-DD)"/>
         </properties>
       </component>
       <component id="a2436" class="javax.swing.JButton" binding="btnAddWorkout">

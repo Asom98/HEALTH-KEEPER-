@@ -39,6 +39,7 @@ public class RegistrationForm extends JDialog{
             @Override
             public void actionPerformed(ActionEvent e) {
                 registerUser();
+                StartMenu startMenu = new StartMenu(null);
             }
         });
         btnCancel.addActionListener(new ActionListener() {

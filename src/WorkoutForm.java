@@ -39,7 +39,7 @@ public class WorkoutForm extends JDialog{
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                UserForm userForm = new UserForm(null);
+                UserForm userForm = new UserForm(user);
             }
         });
         setVisible(true);
