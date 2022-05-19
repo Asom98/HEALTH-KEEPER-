@@ -5,12 +5,11 @@ import java.util.Date;
 public class Food {
     private String foodName;
     private int calories;
-    private Date foodDate;
 
-    public Food(String foodName,int calories, Date foodDate) {
+    public Food(String foodName,int calories) {
         this.foodName = foodName;
         this.calories = calories;
-        this.foodDate = foodDate;
+
     }
     public int getCalories() {
         return calories;
@@ -26,16 +25,8 @@ public class Food {
     public void setFoodName(String foodName) {
         this.foodName = foodName;
     }
-
-    public Date getFoodDate() {
-        return foodDate;
+    @Override
+    public String toString() {
+        return "Food{" + foodName + "}";
     }
-
-    public void setFoodDate(Date foodDate) {
-        this.foodDate = foodDate;
-    }
-
-
-
-
 }

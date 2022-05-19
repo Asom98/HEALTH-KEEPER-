@@ -1,5 +1,7 @@
 package modelS;
 
+import java.sql.*;
+
 public class User {
     public String name;
     public String email;
@@ -82,5 +84,33 @@ public class User {
 
     public void setWeight(int weight){
         this.weight = weight;
+    }
+
+
+    public int getUserId() throws SQLException {
+
+        final String DB_URL = "jdbc:mysql://localhost:3306/agileMethodsDB";
+        final String USERNAME = "root";
+        final String PASSWORD = "root";
+        ResultSet res = null;
+        int id = 0;
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+            Statement stmt = conn.createStatement();
+            String sql = "Select id From users where name = ?";
+            PreparedStatement stm = conn.prepareStatement(sql);
+            stm.setString(1, this.name);
+            res = stm.executeQuery();
+
+            while (res.next()){
+                id = res.getInt(1);
+            }
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return id;
     }
 }

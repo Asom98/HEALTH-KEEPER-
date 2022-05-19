@@ -4,14 +4,15 @@ import java.util.Date;
 
 public class Workout {
 
+    private String workOutTyp;
     private int duration;
-    private boolean usedWeights;
-    private Date workOutDate;
 
-    public Workout(int duration, boolean usedWeights, Date workOutDate) {
+
+    public Workout(String workOutTyp,int duration) {
+        this.workOutTyp = workOutTyp;
         this.duration = duration;
-        this.usedWeights = usedWeights;
-        this.workOutDate = workOutDate;
+
+
     }
 
     public int getDuration() {
@@ -22,19 +23,17 @@ public class Workout {
         this.duration = duration;
     }
 
-    public boolean isUsedWeights() {
-        return usedWeights;
+
+    public String getWorkOutTyp() {
+        return workOutTyp;
     }
 
-    public void setUsedWeights(boolean usedWeights) {
-        this.usedWeights = usedWeights;
+    public void setWorkOutTyp(String workOutTyp) {
+        this.workOutTyp = workOutTyp;
     }
 
-    public Date getWorkOutDate() {
-        return workOutDate;
-    }
-
-    public void setWorkOutDate(Date workOutDate) {
-        this.workOutDate = workOutDate;
+    @Override
+    public String toString() {
+        return "Workout{"+ workOutTyp + "}";
     }
 }
