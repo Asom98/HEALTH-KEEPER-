@@ -46,6 +46,7 @@ public class RegistrationForm extends JDialog{
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
+                StartMenu startMenu = new StartMenu(null);
             }
         });
 
