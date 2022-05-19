@@ -26,6 +26,8 @@ public class UserForm extends JDialog {
     private JLabel dayLabel;
     private JList dayList;
     private JLabel showLabel;
+    private JLabel monthDayChooser;
+    private String dateInChooseDay;
 
 
     public  UserForm(User user) {
@@ -41,7 +43,9 @@ public class UserForm extends JDialog {
         Month monthText = dateNow.getMonth();
         Integer monthValue = dateNow.getMonthValue();
         Integer yearValue = dateNow.getYear();
+        monthDayChooser.setText(String.valueOf(monthText));
         dateLabel.setText(monthText+ " " + dateNow.toString()); //date in the right upper corner
+
 
         mealsBtn.setBackground(new Color(255,215,0));
         mealsBtn.setBorderPainted(false);
@@ -54,7 +58,11 @@ public class UserForm extends JDialog {
         nameLabel.setText("Welcome " + user.getName()); //welcoming the user
         ArrayList<Workout> workoutsFromDataBase = getWorkoutToList(user);
         for (Workout w: workoutsFromDataBase) {
-            System.out.println(w.getDate());;
+            System.out.println(w.getDate());
+        }
+        ArrayList<Food> foodsFromDataBase = getFoodToList(user);
+        for (Food food: foodsFromDataBase) {
+            System.out.println(food.getFoodName());
         }
 
 
@@ -96,10 +104,10 @@ public class UserForm extends JDialog {
 
                 String date = String.valueOf(yearValue + "-" + monthValue + "-" + dayChooser.getDay()) ;
                 //dayLabel.setText(date);
-                Day day = new Day(Date.valueOf(date));
-                dayLabel.setText(String.valueOf(day.getDate()));
-
-
+                //Day day = new Day(Date.valueOf(date));
+                setDateInChooseDay(date);
+                System.out.println(getDateInChooseDay());
+                dayLabel.setText(date);
 
             }
         });
@@ -187,6 +195,12 @@ public class UserForm extends JDialog {
             e.printStackTrace();
         }
         return foods;
+    }
+    public void setDateInChooseDay(String dateInChooseDay){
+        this.dateInChooseDay = dateInChooseDay;
+    }
+    public String getDateInChooseDay(){
+        return dateInChooseDay;
     }
 
 }
