@@ -29,7 +29,7 @@ public class UserForm extends JDialog {
 
 
 
-    public  UserForm(User user) {
+    public UserForm(User user) {
         setTitle("User form");
         setContentPane(userPanel);
         setMinimumSize(new Dimension(800, 600));
