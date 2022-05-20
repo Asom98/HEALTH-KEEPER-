@@ -80,13 +80,9 @@ public class UpdateProfile extends JFrame {
     //creating database path and store values in database
     private void updateUserDataBase (User user) {
 
-        //UpdateProfile UpdateProfile = null;
-        //User user = new User(name,email, null);
-        //UserProfile userProfile = new UserProfile(dateOfBirth, Gender, height, weight);
-
-        final String DB_URL = "jdbc:mysql://eu-cdbr-west-02.cleardb.net/heroku_b7a2d484b13ad29";
-        final String USERNAME = "b9ff1b68e68067";
-        final String PASSWORD = "a4162bab";
+        final String DB_URL = "jdbc:mysql://localhost:3306/agileMethodsDB";
+        final String USERNAME = "root";
+        final String PASSWORD = "root";
 
         try {
 
@@ -103,7 +99,7 @@ public class UpdateProfile extends JFrame {
 
             prepStatement2.setString(1, user.getGender());
             prepStatement2.setString(2, user.getDateOfBirth());
-            prepStatement2.setString(3, String.valueOf(user.getWeight()));
+            prepStatement2.setString(3, String.valueOf(user.getHeight()));
             prepStatement2.setString(4, String.valueOf(user.getWeight()));
             prepStatement2.setString(5, user.getName());
 

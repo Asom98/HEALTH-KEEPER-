@@ -1,13 +1,19 @@
 package modelS;
 
+import java.util.Date;
+
 public class Workout {
 
+    private String workOutTyp;
     private int duration;
-    private boolean usedWeights;
+    private Date date;
 
-    public Workout(int duration, boolean usedWeights) {
+
+    public Workout(String workOutTyp,int duration,Date date) {
+        this.workOutTyp = workOutTyp;
         this.duration = duration;
-        this.usedWeights = usedWeights;
+        this.date = date;
+
     }
 
     public int getDuration() {
@@ -18,12 +24,25 @@ public class Workout {
         this.duration = duration;
     }
 
-    public boolean isUsedWeights() {
-        return usedWeights;
+
+    public String getWorkOutTyp() {
+        return workOutTyp;
     }
 
-    public void setUsedWeights(boolean usedWeights) {
-        this.usedWeights = usedWeights;
+    public void setWorkOutTyp(String workOutTyp) {
+        this.workOutTyp = workOutTyp;
     }
 
+    public Date getDate() {
+        return date;
+    }
+
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    @Override
+    public String toString() {
+        return "Workout{"+ workOutTyp + "}";
+    }
 }

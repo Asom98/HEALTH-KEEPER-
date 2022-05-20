@@ -28,7 +28,7 @@ public class StartMenu extends JDialog implements ActionListener {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                UserForm userForm = new UserForm(null);
+                LoginForm loginForm = new LoginForm(null);
             }
         });
 
@@ -38,7 +38,6 @@ public class StartMenu extends JDialog implements ActionListener {
             public void actionPerformed(ActionEvent e) {
                 dispose();
                 RegistrationForm registrationForm = new RegistrationForm(new JFrame());
-                StartMenu startMenu = new StartMenu(null);
 
             }
         });

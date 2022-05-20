@@ -18,10 +18,10 @@
         <border type="none"/>
         <children>
           <grid id="a2561" binding="TopPanel" layout-manager="GridLayoutManager" row-count="1" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-            <margin top="15" left="15" bottom="15" right="15"/>
+            <margin top="20" left="20" bottom="20" right="20"/>
             <constraints border-constraint="North"/>
             <properties>
-              <background color="-7910625"/>
+              <background color="-12572912"/>
               <foreground color="-2325706"/>
             </properties>
             <border type="none"/>
@@ -33,17 +33,17 @@
                 <properties>
                   <background color="-1"/>
                   <font name="Arial Rounded MT Bold" size="36" style="0"/>
-                  <foreground color="-26305"/>
+                  <foreground color="-6007508"/>
                   <text value="Update Profile"/>
                 </properties>
               </component>
             </children>
           </grid>
           <grid id="82c7b" binding="InfoPanel" layout-manager="GridLayoutManager" row-count="5" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
-            <margin top="5" left="5" bottom="5" right="5"/>
+            <margin top="20" left="20" bottom="20" right="20"/>
             <constraints border-constraint="Center"/>
             <properties>
-              <background color="-2325706"/>
+              <background color="-6007508"/>
               <enabled value="false"/>
               <foreground color="-1"/>
             </properties>

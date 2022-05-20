@@ -1,17 +1,16 @@
 package modelS;
 
+import java.sql.*;
+
 public class User {
     public String name;
     public String email;
     public String password;
-
     private String dateOfBirth;
-    private String Gender;
+
+    private String gender;
     private int height;
     private int weight;
-
-
-    //private ArrayList<> days;
 
 
     public User() {
@@ -25,7 +24,7 @@ public class User {
 
     public User (String dateOfBirth, String gender, int height, int weight){
         this.dateOfBirth = dateOfBirth;
-        this.Gender = gender;
+        this.gender = gender;
         this.height = height;
         this.weight = weight;
     }
@@ -64,11 +63,11 @@ public class User {
     }
 
     public String getGender() {
-        return Gender;
+        return gender;
     }
 
     public void setGender (String gender){
-        this.Gender = Gender;
+        this.gender = gender;
     }
 
     public int getHeight() {
@@ -85,5 +84,33 @@ public class User {
 
     public void setWeight(int weight){
         this.weight = weight;
+    }
+
+
+    public int getUserId() throws SQLException {
+
+        final String DB_URL = "jdbc:mysql://localhost:3306/agileMethodsDB";
+        final String USERNAME = "root";
+        final String PASSWORD = "root";
+        ResultSet res = null;
+        int id = 0;
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
+            Statement stmt = conn.createStatement();
+            String sql = "Select id From users where name = ?";
+            PreparedStatement stm = conn.prepareStatement(sql);
+            stm.setString(1, this.name);
+            res = stm.executeQuery();
+
+            while (res.next()){
+                id = res.getInt(1);
+            }
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+        return id;
     }
 }

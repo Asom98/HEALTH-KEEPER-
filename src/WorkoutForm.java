@@ -1,23 +1,22 @@
-import com.toedter.calendar.JDayChooser;
+import modelS.User;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.Statement;
+import java.sql.*;
 
 public class WorkoutForm extends JDialog{
     private JComboBox cbWorkoutType;
-    private JComboBox cbWorkoutHours;
+    private JComboBox cbWeight;
     private JComboBox cbWorkoutMinutes;
     private JButton btnAddWorkout;
     private JButton btnCancel;
     private JPanel WorkoutFormPanel;
+    private JLabel dateLabel;
+    private JTextField dateTextBox;
 
-    public WorkoutForm(JFrame parent) {
+    public WorkoutForm(JFrame parent, User user) {
         super(parent);
         setTitle("Add Workout");
         setContentPane(WorkoutFormPanel);
@@ -29,9 +28,16 @@ public class WorkoutForm extends JDialog{
         btnAddWorkout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
+<<<<<<< HEAD
                 JDayChooser dayChooser = new JDayChooser();
                 int myDay = dayChooser.getDay();
                 System.out.println(myDay);
+=======
+                addWorkOutToDataBase(user);
+                //JDayChooser dayChooser = new JDayChooser();
+                //int myDay = dayChooser.get();
+                //System.out.println(myDay);
+>>>>>>> origin/main
                 // call addWorkout method
             }
         });
@@ -39,46 +45,41 @@ public class WorkoutForm extends JDialog{
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                UserForm userForm = new UserForm(null);
+                UserForm userForm = new UserForm(user);
             }
         });
         setVisible(true);
     }
 
     // Add workout to day selected on calendar
-    public void addWorkout(){
+    public void addWorkOutToDataBase(User user){
 
         // get selected day from calendar
 
-
-       /*
         // get values from form input
-        ComboBoxModel workoutType = cbWorkoutType.getModel();
-        ComboBoxModel workoutHours = cbWorkoutHours.getModel();
-        ComboBoxModel workoutMinutes = cbWorkoutMinutes.getModel();
+        String workoutType = cbWorkoutType.getSelectedItem().toString();
+        //String weight = cbWeight.getSelectedItem().toString();
+        int workoutMinutes = Integer.parseInt(cbWorkoutMinutes.getSelectedItem().toString());
+        Date date = Date.valueOf(dateTextBox.getText());
 
-        final String DB_URL = "jdbc:mysql://eu-cdbr-west-02.cleardb.net/heroku_b7a2d484b13ad29";
-        final String USERNAME = "b9ff1b68e68067";
-        final String PASSWORD = "a4162bab";
-
+        final String DB_URL = "jdbc:mysql://localhost:3306/agileMethodsDB";
+        final String USERNAME = "root";
+        final String PASSWORD = "root";
         try{
             Connection conn = DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
 
             Statement stmt = conn.createStatement();
-            String sql = "INSERT INTO workout" +
-                    "VALUES (?, ?, ?);";
+            String sql = "INSERT INTO workout(workOutTyp, duration, workOutDate, users_id)" +
+                    "VALUES (?, ?, ?, ?);";
 
             PreparedStatement prepStatement = conn.prepareStatement(sql);
             prepStatement.setString(1, String.valueOf(workoutType));
-            prepStatement.setString(2, String.valueOf(workoutHours));
-            prepStatement.setString(3, String.valueOf(workoutMinutes));
+            prepStatement.setInt(2, workoutMinutes);
+            prepStatement.setDate(3, date);
+            prepStatement.setString(4, String.valueOf(user.getUserId()));
 
-            int addedRows = prepStatement.executeUpdate();
 
-            // If the write operation was successful
-            if (addedRows > 0) {
-                // Probably don't need to do anything
-            }
+            prepStatement.executeUpdate();
 
             stmt.close();
             conn.close();
@@ -88,7 +89,7 @@ public class WorkoutForm extends JDialog{
         }
     }
 
-        */
+
 /*
     public void fetchWorkout(){
 
@@ -100,7 +101,6 @@ public class WorkoutForm extends JDialog{
             from workout
             where workout.user_id = user.id
          */
-    }
 
 
     public void displayWorkout(){
@@ -123,7 +123,7 @@ public class WorkoutForm extends JDialog{
     }
 
     public static void main(String[] args) {
-       WorkoutForm workoutForm = new WorkoutForm(null);
+        //WorkoutForm workoutForm = new WorkoutForm(null,UserForm.);
 
 
     }

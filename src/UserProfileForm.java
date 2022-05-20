@@ -20,12 +20,6 @@ public class UserProfileForm extends JFrame {
     private JLabel heightLabel;
     private JLabel weightLabel;
 
-    //UserForm userForm = new UserForm(null);
-    //public User user1 = userForm.user;
-
-    //User user = new User();
-    //UserProfile userProfile = new UserProfile();
-
 
     //creating and setting up JFrame
     public UserProfileForm(JFrame parent, User user) throws SQLException {
@@ -47,6 +41,7 @@ public class UserProfileForm extends JFrame {
             dateOfBirthLabel.setText(rs.getString("dateOfBirth"));
 
         }
+
         //assigning the column to values
 
 
@@ -99,7 +94,7 @@ public class UserProfileForm extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                UserForm userForm = new UserForm(null);
+                UserForm userForm = new UserForm(user);
             }
         });
         setVisible(true);
@@ -108,9 +103,9 @@ public class UserProfileForm extends JFrame {
     public ResultSet getUserInfo(User user){
 
         ResultSet res = null;
-        final String DB_URL = "jdbc:mysql://eu-cdbr-west-02.cleardb.net/heroku_b7a2d484b13ad29";
-        final String USERNAME = "b9ff1b68e68067";
-        final String PASSWORD = "a4162bab";
+        final String DB_URL = "jdbc:mysql://localhost:3306/agileMethodsDB";
+        final String USERNAME = "root";
+        final String PASSWORD = "root";
 
         try{
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
@@ -131,9 +126,9 @@ public class UserProfileForm extends JFrame {
 
     public void deletAccount(User user){
 
-        final String DB_URL = "jdbc:mysql://eu-cdbr-west-02.cleardb.net/heroku_b7a2d484b13ad29";
-        final String USERNAME = "b9ff1b68e68067";
-        final String PASSWORD = "a4162bab";
+        final String DB_URL = "jdbc:mysql://localhost:3306/agileMethodsDB";
+        final String USERNAME = "root";
+        final String PASSWORD = "root";
 
 
         try{

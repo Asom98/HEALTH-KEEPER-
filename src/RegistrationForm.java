@@ -39,12 +39,14 @@ public class RegistrationForm extends JDialog{
             @Override
             public void actionPerformed(ActionEvent e) {
                 registerUser();
+                StartMenu startMenu = new StartMenu(null);
             }
         });
         btnCancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
+                StartMenu startMenu = new StartMenu(null);
             }
         });
 
@@ -86,9 +88,9 @@ public class RegistrationForm extends JDialog{
         UserForm userForm = null;
         User user = new User(name, email, password);
 
-        final String DB_URL = "jdbc:mysql://eu-cdbr-west-02.cleardb.net/heroku_b7a2d484b13ad29";
-        final String USERNAME = "b9ff1b68e68067";
-        final String PASSWORD = "a4162bab";
+        final String DB_URL = "jdbc:mysql://localhost:3306/agileMethodsDB";
+        final String USERNAME = "root";
+        final String PASSWORD = "root";
 
         try{
             Connection conn = DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
@@ -136,6 +138,33 @@ public class RegistrationForm extends JDialog{
         }
         else{
             System.out.println("Registration cancelled");
+        }
+    }
+
+    public boolean checkName(String name){
+
+        if (name.isEmpty() && name.length() < 4){
+            return false;
+        }else {
+            return true;
+        }
+    }
+
+    public boolean checkEmail(String email){
+
+        if (email.isEmpty() && !email.contains("@")){
+            return false;
+        }else {
+            return true;
+        }
+    }
+
+    public boolean checkPassword(String password){
+
+        if (password.isEmpty() && password.length() < 4){
+            return false;
+        }else {
+            return true;
         }
     }
 }

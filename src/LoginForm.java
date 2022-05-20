@@ -21,7 +21,7 @@ public class LoginForm extends JDialog{
         super(parent);
         setTitle("Login");
         setContentPane(loginPanel);
-        setMinimumSize(new Dimension(500, 550));
+        setMinimumSize(new Dimension(500, 350));
         setModal(true);
         setLocationRelativeTo(parent);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -33,7 +33,6 @@ public class LoginForm extends JDialog{
             public void actionPerformed(ActionEvent e) {
                 String email = tfEmail.getText();
                 String password = String.valueOf(pfPassword.getPassword());
-
                 user = getAuthenticatedUser(email, password);
 
                 if (user != null){
@@ -41,7 +40,9 @@ public class LoginForm extends JDialog{
                             "logged in successfully: " + user.getName(),
                             "Welcome",
                             JOptionPane.INFORMATION_MESSAGE);
-                    dispose();
+
+                            dispose();
+                            new UserForm(user);
                 }
                 else {
                     JOptionPane.showMessageDialog(LoginForm.this,
@@ -93,10 +94,9 @@ public class LoginForm extends JDialog{
     private User getAuthenticatedUser(String email, String password) {
         User user = null;
 
-        final String DB_URL = "jdbc:mysql://eu-cdbr-west-02.cleardb.net/heroku_b7a2d484b13ad29";
-        final String USERNAME = "b9ff1b68e68067";
-        final String PASSWORD = "a4162bab";
-
+        final String DB_URL = "jdbc:mysql://localhost:3306/agileMethodsDB";
+        final String USERNAME = "root";
+        final String PASSWORD = "root";
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
 

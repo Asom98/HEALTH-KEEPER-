@@ -3,11 +3,13 @@ import modelS.*;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.sql.SQLException;
+import java.awt.event.*;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.sql.*;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.ArrayList;
 
 public class UserForm extends JDialog {
 
@@ -21,28 +23,30 @@ public class UserForm extends JDialog {
     private JLabel healthIcon;
     private JDayChooser dayChooser;
     private JLabel dateLabel;
+    private JLabel dayLabel;
+    private JList dayList;
+    private JLabel showLabel;
+    private JLabel monthDayChooser;
+    private JButton logoutButton;
+    private String dateInChooseDay;
 
-    LoginForm loginForm = new LoginForm(null); //calling the loginFrom when the app starts
-    User user = loginForm.user;
 
-
-
-     // making a user each time someone want to log in
-
-
-    public  UserForm(JFrame parent) {
-        super(parent);
+    public  UserForm(User user) {
         setTitle("User form");
         setContentPane(userPanel);
-        setMinimumSize(new Dimension(800, 600));
+        setMinimumSize(new Dimension(1100, 600));
         setModal(true);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
 
         LocalDate dateNow = LocalDate.now();
-        Month month = dateNow.getMonth();
-        dateLabel.setText(month+ " " + dateNow.toString()); //date in the right upper corner
+        Month monthText = dateNow.getMonth();
+        Integer monthValue = dateNow.getMonthValue();
+        Integer yearValue = dateNow.getYear();
+        monthDayChooser.setText(String.valueOf(monthText));
+        dateLabel.setText(monthText+ " " + dateNow.toString()); //date in the right upper corner
+
 
         mealsBtn.setBackground(new Color(255,215,0));
         mealsBtn.setBorderPainted(false);
@@ -52,42 +56,35 @@ public class UserForm extends JDialog {
 
         profileBtn.setBackground(new Color(255,215,0));
         profileBtn.setBorderPainted(false);
-
-        nameLabel.setText("Welcome " + user.getName()); //welcoming the user
+        nameLabel.setText("Welcome " + user.getName() + "!"); //welcoming the user
+        ArrayList<Workout> workoutsFromDataBase = getWorkoutToList(user);
+        for (Workout w: workoutsFromDataBase) {
+            System.out.println(w.getDate());
+        }
+        ArrayList<Food> foodsFromDataBase = getFoodToList(user);
+        for (Food food: foodsFromDataBase) {
+            System.out.println(food.getFoodName());
+        }
 
 
         profileBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                dispose();
                 try {
+
                     UserProfileForm userprofile = new UserProfileForm(null, user);
                 } catch (SQLException ex) {
                     throw new RuntimeException(ex);
                 }
-
-
-                //this method will be performed when you click on the profile button
-                /*JOptionPane.showMessageDialog(UserForm.this,
-                        "welcome to your profile: " ,
-                        "Profile",
-                        JOptionPane.INFORMATION_MESSAGE);*/
-
+                dispose();
             }
         });
 
         workOutBtn.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //this method will be performed when you click on the workout button
-                /*
-                JOptionPane.showMessageDialog(UserForm.this,
-                        "here we add a new work out",
-                        "Work out",
-                        JOptionPane.INFORMATION_MESSAGE);
-                 */
                 dispose();
-                WorkoutForm workoutForm = new WorkoutForm(null);
+                WorkoutForm workoutForm = new WorkoutForm(null, user);
 
             }
         });
@@ -97,36 +94,122 @@ public class UserForm extends JDialog {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(UserForm.this,
-                        "health status...",
-                        "Health",
-                        JOptionPane.INFORMATION_MESSAGE);
+                MealsForm mealsForm = new MealsForm(null, user);
+            }
+        });
+
+        logoutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                StartMenu startMenu = new StartMenu(null);
+
+            }
+        });
+
+        dayChooser.addPropertyChangeListener(new PropertyChangeListener() {
+            @Override
+            public void propertyChange(PropertyChangeEvent evt) {
+                //SimpleDateFormat dcn = new SimpleDateFormat("yyyy-MM-dd");
+
+                String date = String.valueOf(yearValue + "-" + monthValue + "-" + dayChooser.getDay()) ;
+                //dayLabel.setText(date);
+                //Day day = new Day(Date.valueOf(date));
+                setDateInChooseDay(date);
+                System.out.println(getDateInChooseDay());
+                dayLabel.setText(date);
+
             }
         });
         setVisible(true);
 
-
-
     }
-
-
 
     public static void main(String[] args) {
 
+        //UserForm userForm = new UserForm(null); // calling the user form. notice that loginForm well be executed befor userForm
+    }
 
-        
-        UserForm userForm = new UserForm(null); // calling the user form. notice that loginForm well be executed befor userForm
-        /*
-        if(user != null){
+    public ArrayList getWorkoutToList(User user){
+
+        ArrayList<Workout> workouts = new ArrayList<>();
+        final String DB_URL = "jdbc:mysql://localhost:3306/agileMethodsDB";
+        final String USERNAME = "root";
+        final String PASSWORD = "root";
+        ResultSet res = null;
+
+        try{
+            Connection conn = DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
+
+            Statement stmt = conn.createStatement();
+            String sql = "select workOutTyp, duration, workOutDate from workout where users_id = ?";
+
+            PreparedStatement prepStatement = conn.prepareStatement(sql);
+            prepStatement.setString(1, String.valueOf(user.getUserId()));
+
+            res =  prepStatement.executeQuery();
+            while (res.next()){
+
+                String workOutTyp = res.getString("workOutTyp");
+                int duration = res.getInt("duration");
+                Date date = res.getDate("workOutDate");
+                Workout workout = new Workout(workOutTyp, duration, date);
+                workouts.add(workout);
+            }
 
 
+            stmt.close();
+            conn.close();
 
-        }else {
-            System.out.printf("try agin");
-        }*/
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return workouts;
+    }
+
+    public ArrayList getFoodToList(User user){
+
+        ArrayList<Food> foods = new ArrayList<>();
+        final String DB_URL = "jdbc:mysql://localhost:3306/agileMethodsDB";
+        final String USERNAME = "root";
+        final String PASSWORD = "root";
+        ResultSet res = null;
+
+        try{
+            Connection conn = DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
+
+            Statement stmt = conn.createStatement();
+            String sql = "select foodName, foodCal, foodDate from food where users_id = ?";
+
+            PreparedStatement prepStatement = conn.prepareStatement(sql);
+            prepStatement.setString(1, String.valueOf(user.getUserId()));
+
+            res =  prepStatement.executeQuery();
+            while (res.next()){
+
+                String workOutTyp = res.getString("foodName");
+                int duration = res.getInt("foodCal");
+                Date date = res.getDate("foodDate");
+                Food food = new Food(workOutTyp, duration, date);
+                foods.add(food);
+            }
 
 
+            stmt.close();
+            conn.close();
 
+        }
+        catch (Exception e){
+            e.printStackTrace();
+        }
+        return foods;
+    }
+    public void setDateInChooseDay(String dateInChooseDay){
+        this.dateInChooseDay = dateInChooseDay;
+    }
+    public String getDateInChooseDay(){
+        return dateInChooseDay;
     }
 
 }
