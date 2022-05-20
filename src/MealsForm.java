@@ -27,7 +27,7 @@ public class MealsForm extends JDialog{
         setModal(true);
         setLocationRelativeTo(parent);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-
+/*
         DateTf.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
@@ -56,7 +56,7 @@ public class MealsForm extends JDialog{
             @Override
             public void focusLost(FocusEvent e) {
             }
-        });
+        });*/
 
 
         addMealsButton.addActionListener(new ActionListener() {
