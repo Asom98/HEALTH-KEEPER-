@@ -40,7 +40,7 @@
 <p>in the termial:</p>
 <p>pyreverse -o png <path to gamefiles> </p>
 
-**FEATURES**
+# FEATURES
 
 Fokus på träning & kost.
 
@@ -53,7 +53,7 @@ Enkel planering för måltider och träning.
 Kunna ange antal kalorier per måltid, för att ha koll på sitt intag samt förbränning vid träning
 
 
-EXTRA:
+# EXTRA:
 
 Motivations-citat för varje dag för att motivera.
 
