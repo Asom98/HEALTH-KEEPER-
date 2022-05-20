@@ -134,10 +134,22 @@ public class UserProfileForm extends JFrame {
         try{
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
             Statement stmt = conn.createStatement();
-            String sql = "Delete from users where name = ?";
+            String sql =  "Delete  from workout where users_id = ?" ;
+            String sql1 =  "Delete  from food where users_id = ?";
+            String sql2 =  "Delete from users where id = ?";
+            //"Delete  from food where users_id = ?" +
+            //"Delete from users where id = ?" ;
             PreparedStatement stm = conn.prepareStatement(sql);
-            stm.setString(1, user.getName());
+            PreparedStatement stm1 = conn.prepareStatement(sql1);
+            PreparedStatement stm2 = conn.prepareStatement(sql2);
+            stm.setInt(1, user.getUserId());
+            stm1.setInt(1, user.getUserId());
+            stm2.setInt(1, user.getUserId());
+            //stm.setInt(2, user.getUserId());
+            // stm.setInt(3, user.getUserId());
             stm.executeUpdate();
+            stm1.executeUpdate();
+            stm2.executeUpdate();
 
 
         }catch (Exception e) {
