@@ -59,12 +59,10 @@ public class UserForm extends JDialog {
         profileBtn.setBackground(new Color(255,215,0));
         profileBtn.setBorderPainted(false);
         nameLabel.setText("Welcome " + user.getName() + "!"); //welcoming the user
+        
         ArrayList<Workout> workoutsFromDataBase = getWorkoutToList(user);
-
         ArrayList<Food> foodsFromDataBase = getFoodToList(user);
-        for (Food food: foodsFromDataBase) {
-            //System.out.println(food.getFoodName());
-        }
+
 
 
         profileBtn.addActionListener(new ActionListener() {
@@ -129,7 +127,18 @@ public class UserForm extends JDialog {
                         matchDateForWorkOut.add(w.getWorkOutTyp());
                     }
                 }
-                
+                for (Food f: foodsFromDataBase) {
+                    //System.out.println(String.valueOf(w.getDate()));
+                    //System.out.println(String.valueOf(getDateInChooseDay()));
+                    String first = String.valueOf(f.getDate());
+                    String sec = String.valueOf(date);
+                    if (first.contains(sec) ){
+                        System.out.println(String.valueOf(f.getFoodName()));
+                        //System.out.println(String.valueOf(getDateInChooseDay()));
+                        matchDateForFood.add(f.getFoodName());
+                    }
+                }
+
 
             }
         });
