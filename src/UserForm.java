@@ -27,13 +27,14 @@ public class UserForm extends JDialog {
     private JList dayList;
     private JLabel showLabel;
     private JLabel monthDayChooser;
+    private JButton logoutButton;
     private String dateInChooseDay;
 
 
     public  UserForm(User user) {
         setTitle("User form");
         setContentPane(userPanel);
-        setMinimumSize(new Dimension(800, 600));
+        setMinimumSize(new Dimension(1100, 600));
         setModal(true);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
@@ -55,7 +56,7 @@ public class UserForm extends JDialog {
 
         profileBtn.setBackground(new Color(255,215,0));
         profileBtn.setBorderPainted(false);
-        nameLabel.setText("Welcome " + user.getName()); //welcoming the user
+        nameLabel.setText("Welcome " + user.getName() + "!"); //welcoming the user
         ArrayList<Workout> workoutsFromDataBase = getWorkoutToList(user);
         for (Workout w: workoutsFromDataBase) {
             System.out.println(w.getDate());
@@ -97,6 +98,15 @@ public class UserForm extends JDialog {
             }
         });
 
+        logoutButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                dispose();
+                StartMenu startMenu = new StartMenu(null);
+
+            }
+        });
+
         dayChooser.addPropertyChangeListener(new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
@@ -112,7 +122,6 @@ public class UserForm extends JDialog {
             }
         });
         setVisible(true);
-
 
     }
 
