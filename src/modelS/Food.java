@@ -5,10 +5,9 @@ import java.util.Date;
 public class Food {
     private String foodName;
     private int calories;
-
     private Date date;
 
-    public Food(String foodName,int calories, Date date) {
+    public Food(String foodName, int calories, Date date) {
         this.foodName = foodName;
         this.calories = calories;
         this.date = date;

@@ -1,3 +1,4 @@
+import com.toedter.calendar.JDayChooser;
 import modelS.User;
 
 import javax.swing.*;
@@ -28,16 +29,16 @@ public class WorkoutForm extends JDialog{
         btnAddWorkout.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-<<<<<<< HEAD
+
                 JDayChooser dayChooser = new JDayChooser();
                 int myDay = dayChooser.getDay();
                 System.out.println(myDay);
-=======
+
                 addWorkOutToDataBase(user);
                 //JDayChooser dayChooser = new JDayChooser();
                 //int myDay = dayChooser.get();
                 //System.out.println(myDay);
->>>>>>> origin/main
+
                 // call addWorkout method
             }
         });
