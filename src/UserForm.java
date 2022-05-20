@@ -46,6 +46,8 @@ public class UserForm extends JDialog {
         Integer yearValue = dateNow.getYear();
         monthDayChooser.setText(String.valueOf(monthText));
         dateLabel.setText(monthText+ " " + dateNow.toString()); //date in the right upper corner
+        ArrayList<String> matchDateForWorkOut = new ArrayList<>();
+        ArrayList<String> matchDateForFood = new ArrayList<>();
 
 
         mealsBtn.setBackground(new Color(255,215,0));
@@ -58,12 +60,10 @@ public class UserForm extends JDialog {
         profileBtn.setBorderPainted(false);
         nameLabel.setText("Welcome " + user.getName() + "!"); //welcoming the user
         ArrayList<Workout> workoutsFromDataBase = getWorkoutToList(user);
-        for (Workout w: workoutsFromDataBase) {
-            System.out.println(w.getDate());
-        }
+
         ArrayList<Food> foodsFromDataBase = getFoodToList(user);
         for (Food food: foodsFromDataBase) {
-            System.out.println(food.getFoodName());
+            //System.out.println(food.getFoodName());
         }
 
 
@@ -112,12 +112,24 @@ public class UserForm extends JDialog {
             public void propertyChange(PropertyChangeEvent evt) {
                 //SimpleDateFormat dcn = new SimpleDateFormat("yyyy-MM-dd");
 
-                String date = String.valueOf(yearValue + "-" + monthValue + "-" + dayChooser.getDay()) ;
+                String date = String.valueOf(yearValue + "-" + "0" + monthValue + "-" + dayChooser.getDay());
                 //dayLabel.setText(date);
                 //Day day = new Day(Date.valueOf(date));
                 setDateInChooseDay(date);
-                System.out.println(getDateInChooseDay());
+                //System.out.println(getDateInChooseDay());
                 dayLabel.setText(date);
+                for (Workout w: workoutsFromDataBase) {
+                    //System.out.println(String.valueOf(w.getDate()));
+                    //System.out.println(String.valueOf(getDateInChooseDay()));
+                    String first = String.valueOf(w.getDate());
+                    String sec = String.valueOf(date);
+                    if (first.contains(sec) ){
+                        System.out.println(String.valueOf(w.getWorkOutTyp()));
+                        //System.out.println(String.valueOf(getDateInChooseDay()));
+                        matchDateForWorkOut.add(w.getWorkOutTyp());
+                    }
+                }
+                
 
             }
         });

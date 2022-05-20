@@ -164,7 +164,9 @@
             <preferred-size width="150" height="-1"/>
           </grid>
         </constraints>
-        <properties/>
+        <properties>
+          <text value="2022-05-"/>
+        </properties>
       </component>
     </children>
   </grid>
