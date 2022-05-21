@@ -7,6 +7,9 @@ import java.awt.event.ActionListener;
 import java.awt.event.FocusEvent;
 import java.awt.event.FocusListener;
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.Month;
+import java.util.Locale;
 
 public class MealsForm extends JDialog{
     private JTextField FoodTf;
@@ -18,20 +21,24 @@ public class MealsForm extends JDialog{
     private JPanel mealPanel;
     private JPanel jPanel;
 
-    public MealsForm(JFrame parent, User user) {
 
-        super(parent);
+    public MealsForm(User user) {
+        LocalDate dateNow = LocalDate.now();
+        Month monthText = dateNow.getMonth();
+        Integer yearValue = dateNow.getYear();
+
+
         setTitle("Add Meals");
         setContentPane(jPanel);
         setMinimumSize(new Dimension(800, 600));
         setModal(true);
-        setLocationRelativeTo(parent);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-/*
+
         DateTf.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
-                DateTf.setText("");
+                DateTf.setText(yearValue + "-" + monthText + "-");
             }
             @Override
             public void focusLost(FocusEvent e) {
@@ -56,7 +63,7 @@ public class MealsForm extends JDialog{
             @Override
             public void focusLost(FocusEvent e) {
             }
-        });*/
+        });
 
 
         addMealsButton.addActionListener(new ActionListener() {
@@ -72,7 +79,7 @@ public class MealsForm extends JDialog{
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                //UserForm userForm = new UserForm(user);
+                UserForm userForm = new UserForm(user);
             }
         });
 

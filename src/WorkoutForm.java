@@ -5,7 +5,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.FocusAdapter;
+import java.awt.event.FocusEvent;
 import java.sql.*;
+import java.time.LocalDate;
+import java.time.Month;
 
 public class WorkoutForm extends JDialog{
     private JComboBox cbWorkoutType;
@@ -17,14 +21,26 @@ public class WorkoutForm extends JDialog{
     private JLabel dateLabel;
     private JTextField dateTextBox;
 
-    public WorkoutForm(JFrame parent, User user) {
-        super(parent);
+    public WorkoutForm(User user) {
+
+        LocalDate dateNow = LocalDate.now();
+        Month monthText = dateNow.getMonth();
+        Integer yearValue = dateNow.getYear();
+
         setTitle("Add Workout");
         setContentPane(WorkoutFormPanel);
         setMinimumSize(new Dimension(800, 600));
         setModal(true);
-        setLocationRelativeTo(parent);
+        setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+
+        dateTextBox.addFocusListener(new FocusAdapter() {
+            @Override
+            public void focusGained(FocusEvent e) {
+                super.focusGained(e);
+                dateTextBox.setText(yearValue + "-" + monthText + "-");
+            }
+        });
 
         btnAddWorkout.addActionListener(new ActionListener() {
             @Override
@@ -50,6 +66,7 @@ public class WorkoutForm extends JDialog{
             }
         });
         setVisible(true);
+
     }
 
     // Add workout to day selected on calendar

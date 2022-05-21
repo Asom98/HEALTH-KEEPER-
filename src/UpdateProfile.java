@@ -34,9 +34,12 @@ public class UpdateProfile extends JFrame {
         goBackButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
                 dispose();
-                UserProfile userProfile = new UserProfile();
+                try {
+                    UserProfileForm userProfile = new UserProfileForm(null, user);
+                } catch (SQLException ex) {
+                    throw new RuntimeException(ex);
+                }
 
                 //this button should call on UserProfile (need to change the login function)
             }

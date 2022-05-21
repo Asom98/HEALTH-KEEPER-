@@ -31,7 +31,7 @@ public class UserForm extends JDialog {
     private String dateInChooseDay;
 
 
-    public  UserForm(User user) {
+    public UserForm(User user) {
         setTitle("User form");
         setContentPane(userPanel);
         setMinimumSize(new Dimension(1100, 600));
@@ -45,24 +45,23 @@ public class UserForm extends JDialog {
         Integer monthValue = dateNow.getMonthValue();
         Integer yearValue = dateNow.getYear();
         monthDayChooser.setText(String.valueOf(monthText));
-        dateLabel.setText(monthText+ " " + dateNow.toString()); //date in the right upper corner
+        dateLabel.setText(monthText + " " + dateNow.toString()); //date in the right upper corner
         ArrayList<String> matchDateForWorkOut = new ArrayList<>();
         ArrayList<String> matchDateForFood = new ArrayList<>();
 
 
-        mealsBtn.setBackground(new Color(255,215,0));
+        mealsBtn.setBackground(new Color(255, 215, 0));
         mealsBtn.setBorderPainted(false);
 
-        workOutBtn.setBackground(new Color(255,215,0));
+        workOutBtn.setBackground(new Color(255, 215, 0));
         workOutBtn.setBorderPainted(false);
 
-        profileBtn.setBackground(new Color(255,215,0));
+        profileBtn.setBackground(new Color(255, 215, 0));
         profileBtn.setBorderPainted(false);
         nameLabel.setText("Welcome " + user.getName() + "!"); //welcoming the user
-        
+
         ArrayList<Workout> workoutsFromDataBase = getWorkoutToList(user);
         ArrayList<Food> foodsFromDataBase = getFoodToList(user);
-
 
 
         profileBtn.addActionListener(new ActionListener() {
@@ -82,7 +81,7 @@ public class UserForm extends JDialog {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-                WorkoutForm workoutForm = new WorkoutForm(null, user);
+                WorkoutForm workoutForm = new WorkoutForm(user);
 
             }
         });
@@ -92,7 +91,7 @@ public class UserForm extends JDialog {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-                MealsForm mealsForm = new MealsForm(null, user);
+                MealsForm mealsForm = new MealsForm(user);
             }
         });
 
@@ -111,31 +110,37 @@ public class UserForm extends JDialog {
                 //SimpleDateFormat dcn = new SimpleDateFormat("yyyy-MM-dd");
 
                 String date = String.valueOf(yearValue + "-" + "0" + monthValue + "-" + dayChooser.getDay());
-                //dayLabel.setText(date);
                 //Day day = new Day(Date.valueOf(date));
                 setDateInChooseDay(date);
                 //System.out.println(getDateInChooseDay());
                 dayLabel.setText(date);
-                for (Workout w: workoutsFromDataBase) {
+                for (Workout w : workoutsFromDataBase) {
                     //System.out.println(String.valueOf(w.getDate()));
                     //System.out.println(String.valueOf(getDateInChooseDay()));
                     String first = String.valueOf(w.getDate());
                     String sec = String.valueOf(date);
-                    if (first.contains(sec) ){
-                        System.out.println(String.valueOf(w.getWorkOutTyp()));
-                        //System.out.println(String.valueOf(getDateInChooseDay()));
+
+                    if (first.contains(sec)) {
+                        //System.out.println(String.valueOf(w.getWorkOutTyp()));
                         matchDateForWorkOut.add(w.getWorkOutTyp());
+                        matchDateForWorkOut.add(String.valueOf(w.getDuration()));
+                        DefaultComboBoxModel model=
+                                new DefaultComboBoxModel(matchDateForWorkOut.toArray(new String[matchDateForWorkOut.size()]));
+                        dayList.setModel(model);
+                        System.out.println(model);
                     }
                 }
-                for (Food f: foodsFromDataBase) {
-                    //System.out.println(String.valueOf(w.getDate()));
-                    //System.out.println(String.valueOf(getDateInChooseDay()));
+                for (Food f : foodsFromDataBase) {
                     String first = String.valueOf(f.getDate());
                     String sec = String.valueOf(date);
                     if (first.contains(sec) ){
-                        System.out.println(String.valueOf(f.getFoodName()));
+                        //System.out.println(String.valueOf(f.getFoodName()));
                         //System.out.println(String.valueOf(getDateInChooseDay()));
                         matchDateForFood.add(f.getFoodName());
+                        DefaultComboBoxModel model1=
+                                new DefaultComboBoxModel(matchDateForFood.toArray(new String[matchDateForFood.size()]));
+                        dayList.setModel(model1);
+                        System.out.println(model1);
                     }
                 }
 
@@ -143,15 +148,10 @@ public class UserForm extends JDialog {
             }
         });
         setVisible(true);
-
     }
 
-    public static void main(String[] args) {
 
-        //UserForm userForm = new UserForm(null); // calling the user form. notice that loginForm well be executed befor userForm
-    }
-
-    public ArrayList getWorkoutToList(User user){
+    public ArrayList getWorkoutToList(User user) {
 
         ArrayList<Workout> workouts = new ArrayList<>();
         final String DB_URL = "jdbc:mysql://localhost:3306/agileMethodsDB";
@@ -159,8 +159,8 @@ public class UserForm extends JDialog {
         final String PASSWORD = "root";
         ResultSet res = null;
 
-        try{
-            Connection conn = DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
 
             Statement stmt = conn.createStatement();
             String sql = "select workOutTyp, duration, workOutDate from workout where users_id = ?";
@@ -168,8 +168,8 @@ public class UserForm extends JDialog {
             PreparedStatement prepStatement = conn.prepareStatement(sql);
             prepStatement.setString(1, String.valueOf(user.getUserId()));
 
-            res =  prepStatement.executeQuery();
-            while (res.next()){
+            res = prepStatement.executeQuery();
+            while (res.next()) {
 
                 String workOutTyp = res.getString("workOutTyp");
                 int duration = res.getInt("duration");
@@ -182,14 +182,13 @@ public class UserForm extends JDialog {
             stmt.close();
             conn.close();
 
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return workouts;
     }
 
-    public ArrayList getFoodToList(User user){
+    public ArrayList getFoodToList(User user) {
 
         ArrayList<Food> foods = new ArrayList<>();
         final String DB_URL = "jdbc:mysql://localhost:3306/agileMethodsDB";
@@ -197,8 +196,8 @@ public class UserForm extends JDialog {
         final String PASSWORD = "root";
         ResultSet res = null;
 
-        try{
-            Connection conn = DriverManager.getConnection(DB_URL,USERNAME,PASSWORD);
+        try {
+            Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
 
             Statement stmt = conn.createStatement();
             String sql = "select foodName, foodCal, foodDate from food where users_id = ?";
@@ -206,8 +205,8 @@ public class UserForm extends JDialog {
             PreparedStatement prepStatement = conn.prepareStatement(sql);
             prepStatement.setString(1, String.valueOf(user.getUserId()));
 
-            res =  prepStatement.executeQuery();
-            while (res.next()){
+            res = prepStatement.executeQuery();
+            while (res.next()) {
 
                 String workOutTyp = res.getString("foodName");
                 int duration = res.getInt("foodCal");
@@ -220,19 +219,24 @@ public class UserForm extends JDialog {
             stmt.close();
             conn.close();
 
-        }
-        catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return foods;
     }
-    public void setDateInChooseDay(String dateInChooseDay){
+
+    public String setDateInChooseDay(String dateInChooseDay) {
         this.dateInChooseDay = dateInChooseDay;
-    }
-    public String getDateInChooseDay(){
         return dateInChooseDay;
     }
 
+    public String getDateInChooseDay() {
+        return dateInChooseDay;
+    }
+
+    public static void main(String[] args) {
+
+    }
 }
 
 
