@@ -24,10 +24,11 @@ public class UserForm extends JDialog {
     private JDayChooser dayChooser;
     private JLabel dateLabel;
     private JLabel dayLabel;
-    private JList dayList;
+    private JList workoutList;
     private JLabel showLabel;
     private JLabel monthDayChooser;
     private JButton logoutButton;
+    private JList foodList;
     private String dateInChooseDay;
 
 
@@ -107,44 +108,64 @@ public class UserForm extends JDialog {
         dayChooser.addPropertyChangeListener(new PropertyChangeListener() {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
-                //SimpleDateFormat dcn = new SimpleDateFormat("yyyy-MM-dd");
 
+                //Getting values of chosen date on calender
                 String date = String.valueOf(yearValue + "-" + "0" + monthValue + "-" + dayChooser.getDay());
-                //Day day = new Day(Date.valueOf(date));
+
                 setDateInChooseDay(date);
-                //System.out.println(getDateInChooseDay());
                 dayLabel.setText(date);
+
                 for (Workout w : workoutsFromDataBase) {
-                    //System.out.println(String.valueOf(w.getDate()));
-                    //System.out.println(String.valueOf(getDateInChooseDay()));
+                    //Displaying workouts in workoutList (Jlist)
+
                     String first = String.valueOf(w.getDate());
                     String sec = String.valueOf(date);
 
+                    //Comparing the dates of chosen day and the one stored in database
                     if (first.contains(sec)) {
-                        //System.out.println(String.valueOf(w.getWorkOutTyp()));
-                        matchDateForWorkOut.add(w.getWorkOutTyp());
-                        matchDateForWorkOut.add(String.valueOf(w.getDuration()));
+                        matchDateForWorkOut.add("Date: " + w.getDate());
+                        matchDateForWorkOut.add("Name: " + w.getWorkOutTyp());
+                        matchDateForWorkOut.add("Duration: " + String.valueOf(w.getDuration()) + " min");
                         DefaultComboBoxModel model=
                                 new DefaultComboBoxModel(matchDateForWorkOut.toArray(new String[matchDateForWorkOut.size()]));
-                        dayList.setModel(model);
-                        System.out.println(model);
+                        workoutList.setModel(model);
+
+                    } else {
+                        //empty jlist when clicking another date with no values.
+                        DefaultComboBoxModel model=
+                                new DefaultComboBoxModel(matchDateForWorkOut.toArray(new String[matchDateForWorkOut.size()]));
+                        matchDateForWorkOut.clear();
+                        workoutList.setModel(model);
                     }
                 }
+
                 for (Food f : foodsFromDataBase) {
+                    //Displaying Food in foodList (Jlist)
+
                     String first = String.valueOf(f.getDate());
                     String sec = String.valueOf(date);
+
+                    //Comparing the dates of chosen day and the one stored in database
                     if (first.contains(sec) ){
-                        //System.out.println(String.valueOf(f.getFoodName()));
-                        //System.out.println(String.valueOf(getDateInChooseDay()));
-                        matchDateForFood.add(f.getFoodName());
+                        matchDateForFood.add("Date: " + f.getDate());
+                        matchDateForFood.add("Name: " + f.getFoodName());
+                        matchDateForFood.add(f.getDate() + "Calories: " + String.valueOf(f.getCalories()) + " Kcal");
                         DefaultComboBoxModel model1=
                                 new DefaultComboBoxModel(matchDateForFood.toArray(new String[matchDateForFood.size()]));
-                        dayList.setModel(model1);
-                        System.out.println(model1);
+                        foodList.setModel(model1);
+
+                        //Empty Jlist when clicking on the same date many times to avoid duplication.
+                        //matchDateForFood.clear();
+                        //foodList.setModel(model1);
+
+                    } else {
+                        //empty jlist when clicking another date with no values.
+                        DefaultComboBoxModel model1=
+                                new DefaultComboBoxModel(matchDateForFood.toArray(new String[matchDateForFood.size()]));
+                        matchDateForFood.clear();
+                        foodList.setModel(model1);
                     }
                 }
-
-
             }
         });
         setVisible(true);
@@ -153,12 +174,15 @@ public class UserForm extends JDialog {
 
     public ArrayList getWorkoutToList(User user) {
 
+        //getting data from database of workouts and return values
+
         ArrayList<Workout> workouts = new ArrayList<>();
         final String DB_URL = "jdbc:mysql://localhost:3306/agileMethodsDB";
         final String USERNAME = "root";
         final String PASSWORD = "root";
         ResultSet res = null;
 
+        //Connecting to database
         try {
             Connection conn = DriverManager.getConnection(DB_URL, USERNAME, PASSWORD);
 
@@ -189,6 +213,8 @@ public class UserForm extends JDialog {
     }
 
     public ArrayList getFoodToList(User user) {
+
+        //getting data from database of foods and return values
 
         ArrayList<Food> foods = new ArrayList<>();
         final String DB_URL = "jdbc:mysql://localhost:3306/agileMethodsDB";
@@ -238,6 +264,4 @@ public class UserForm extends JDialog {
 
     }
 }
-
-
 
