@@ -7,6 +7,8 @@
 <p><b>How to install the HEALTH KEEPER:</b></p>
 <p>in the terminal add: </p>
 <p>git clone https://github.com/Asom98/agileMethods</p>
+<p>Run src/StartMenu</p>
+
 
 # Releases
 <p>v1.0.0 38e5de1 https://github.com/Asom98/agileMethods/releases/tag/v1.0.0</p>
@@ -20,25 +22,6 @@
 <p>v9.0.0         https://github.com/Asom98/agileMethods/releases/tag/v9.0.0</p>
 <p>v10.0.0        https://github.com/Asom98/agileMethods/releases/tag/v10.0.0</p>
 
-
-# Installing the enviroment and making the tests
-<p>make venv</p>
-<p>make install</p>
-<p>make unitest. (make file, make flake8)</p> 
-<p></p>
-
-# Coverage
-<p>make coverage</p>
-<p>in files view html doc to see coverage result</p>
-
-# python docstrings
-<p>make doc</p>
-<p>view documentation from the game folder</p>
-
-# UML
-<p>install pylint, install graphviz, install pydoc</p>
-<p>in the termial:</p>
-<p>pyreverse -o png <path to gamefiles> </p>
 
 # FEATURES
 
