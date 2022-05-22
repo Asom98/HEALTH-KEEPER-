@@ -35,7 +35,7 @@ public class MealsForm extends JDialog{
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
 
-        DateTf.addFocusListener(new FocusListener() {
+        /*DateTf.addFocusListener(new FocusListener() {
             @Override
             public void focusGained(FocusEvent e) {
                 DateTf.setText(yearValue + "-" + monthText + "-");
@@ -43,7 +43,7 @@ public class MealsForm extends JDialog{
             @Override
             public void focusLost(FocusEvent e) {
             }
-        });
+        });*/
 
         FoodTf.addFocusListener(new FocusListener() {
             @Override
@@ -71,6 +71,7 @@ public class MealsForm extends JDialog{
             public void actionPerformed(ActionEvent e) {
                 addFoodToDataBase(user);
                 dispose();
+                UserForm userForm = new UserForm(user);
             }
         });
 

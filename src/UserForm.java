@@ -92,6 +92,7 @@ public class UserForm extends JDialog {
 
             @Override
             public void actionPerformed(ActionEvent e) {
+                dispose();
                 MealsForm mealsForm = new MealsForm(user);
             }
         });
