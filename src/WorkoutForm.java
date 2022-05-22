@@ -48,11 +48,7 @@ public class WorkoutForm extends JDialog{
 
                 addWorkOutToDataBase(user);
                 dispose();
-                UserForm userForm = new UserForm(user);                //JDayChooser dayChooser = new JDayChooser();
-                //int myDay = dayChooser.get();
-                //System.out.println(myDay);
-
-                // call addWorkout method
+                UserForm userForm = new UserForm(user);
             }
         });
         btnCancel.addActionListener(new ActionListener() {

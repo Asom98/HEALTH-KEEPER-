@@ -129,18 +129,6 @@ public class RegistrationForm extends JDialog{
     }
 
 
-    public static void main(String[] args) {
-        RegistrationForm myForm = new RegistrationForm(null);
-        User user = myForm.user;
-        if (user != null) {
-
-            System.out.println("Successfully registered as user: " + user.getName());
-        }
-        else{
-            System.out.println("Registration cancelled");
-        }
-    }
-
     public boolean checkName(String name){
 
         if (name.isEmpty() && name.length() < 4){

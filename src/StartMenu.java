@@ -45,18 +45,8 @@ public class StartMenu extends JDialog implements ActionListener {
         setVisible(true);
 
     }
-
-
     @Override
     public void actionPerformed(ActionEvent e) {
-        /*if(e.getSource() == btnLogin) {
-            LoginForm loginForm = new LoginForm(new JFrame());
-        } else {
-            if(e.getSource() == btnRegister) {
-                RegistrationForm registrationForm = new RegistrationForm(new JFrame());
-            }
-        }*/
-
         setVisible(true);
     }
 

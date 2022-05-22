@@ -12,7 +12,6 @@ public class LoginForm extends JDialog{
     private JTextField tfEmail;
     private JPasswordField pfPassword;
     private JButton btnLogin;
-    //private JButton btnRegistration;
     private JPanel loginPanel;
     private JButton btnGoBack;
 
@@ -53,43 +52,17 @@ public class LoginForm extends JDialog{
             }
         });
 
-        /*btnCancel.addActionListener(new ActionListener() {
+        btnGoBack.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
                 dispose();
-            }
-        });
-
-        setVisible(true);
-    } */
-
-    btnGoBack.addActionListener(new ActionListener() {
-        @Override
-        public void actionPerformed(ActionEvent e) {
-            dispose();
-            StartMenu startMenu = new StartMenu(new JFrame());
-
-        }
-    });
-
-    setVisible(true);
-
-}
-    /*
-        btnRegistration.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                dispose();
-                RegistrationForm registrationForm = new RegistrationForm(new JFrame());
+                StartMenu startMenu = new StartMenu(new JFrame());
 
             }
         });
-
         setVisible(true);
+
     }
-
-     */
-
     public User user;
     private User getAuthenticatedUser(String email, String password) {
         User user = null;

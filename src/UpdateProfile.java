@@ -29,7 +29,7 @@ public class UpdateProfile extends JFrame {
         setSize(800, 600);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
-        setVisible(true);
+
 
         goBackButton.addActionListener(new ActionListener() {
             @Override
@@ -62,6 +62,7 @@ public class UpdateProfile extends JFrame {
 
             }
         });
+        setVisible(true);
     }
 
 

@@ -145,8 +145,6 @@ public class UserProfileForm extends JFrame {
             stm.setInt(1, user.getUserId());
             stm1.setInt(1, user.getUserId());
             stm2.setInt(1, user.getUserId());
-            //stm.setInt(2, user.getUserId());
-            // stm.setInt(3, user.getUserId());
             stm.executeUpdate();
             stm1.executeUpdate();
             stm2.executeUpdate();
@@ -156,12 +154,4 @@ public class UserProfileForm extends JFrame {
             e.printStackTrace();
         }
     }
-
-
-    public static void main(String[] args) {
-        //UserProfileForm userProfileForm = new UserProfileForm(null,null);
-
-    }
-
-
 }

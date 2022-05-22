@@ -150,15 +150,10 @@ public class UserForm extends JDialog {
                     if (first.contains(sec) ){
                         matchDateForFood.add("Date: " + f.getDate());
                         matchDateForFood.add("Name: " + f.getFoodName());
-                        matchDateForFood.add(f.getDate() + "Calories: " + String.valueOf(f.getCalories()) + " Kcal");
+                        matchDateForFood.add("Calories: " + String.valueOf(f.getCalories()) + " Kcal");
                         DefaultComboBoxModel model1=
                                 new DefaultComboBoxModel(matchDateForFood.toArray(new String[matchDateForFood.size()]));
                         foodList.setModel(model1);
-
-                        //Empty Jlist when clicking on the same date many times to avoid duplication.
-                        //matchDateForFood.clear();
-                        //foodList.setModel(model1);
-
                     } else {
                         //empty jlist when clicking another date with no values.
                         DefaultComboBoxModel model1=
