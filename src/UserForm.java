@@ -43,7 +43,7 @@ public class UserForm extends JDialog {
 
         LocalDate dateNow = LocalDate.now();
         Month monthText = dateNow.getMonth();
-        Integer monthValue = dateNow.getMonthValue();
+        var monthValue = (dateNow.getMonthValue() <10 ? "0" : "") + dateNow.getMonthValue();
         Integer yearValue = dateNow.getYear();
         monthDayChooser.setText(String.valueOf(monthText));
         dateLabel.setText(monthText + " " + dateNow.toString()); //date in the right upper corner
@@ -110,9 +110,12 @@ public class UserForm extends JDialog {
             @Override
             public void propertyChange(PropertyChangeEvent evt) {
 
-                //Getting values of chosen date on calender
-                String date = String.valueOf(yearValue + "-" + "0" + monthValue + "-" + dayChooser.getDay());
+                var day = (dayChooser.getDay() <10 ? "0" : "") + dayChooser.getDay();
 
+
+                //Getting values of chosen date on calender
+                String date = String.valueOf(yearValue + "-" + monthValue + "-" + day);
+                System.out.println(date);
                 setDateInChooseDay(date);
                 dayLabel.setText(date);
 
